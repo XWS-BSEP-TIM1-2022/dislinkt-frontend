@@ -8,5 +8,5 @@ import { environment } from 'src/environments/environment';
 })
 export class AppComponent {
   title = 'dislinkt-frontend';
-  envTest = environment.test
+  
 }

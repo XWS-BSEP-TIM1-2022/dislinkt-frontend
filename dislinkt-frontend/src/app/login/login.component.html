@@ -1,0 +1,29 @@
+<section class="hero is-medium">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <div class="column is-4 is-offset-4">
+                <h3 class="title has-text-grey">Login</h3>
+                <div class="box">
+                    <form ngNativeValidate>
+                        <div class="field">
+                            <div class="control">
+                                <input class="input is-large" type="text" placeholder="username or email" autofocus=""
+                                    name="username" [(ngModel)]="username" required>
+                            </div>
+                            <p class="is-danger help"></p>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <input class="input is-large" type="password" placeholder="password" name="password"
+                                    [(ngModel)]="password" required>
+                            </div>
+                            <p class="is-danger help"></p>
+                        </div>
+                        <button class="button is-block is-primary is-large is-fullwidth"
+                            (click)="login()">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

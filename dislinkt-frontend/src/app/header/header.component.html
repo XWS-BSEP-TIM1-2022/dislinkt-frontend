@@ -1,7 +1,9 @@
-<nav class="navbar is-light" role="navigation" aria-label="main navigation">
+<nav class="navbar is-dark" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <span class="navbar-item">
-
+            <a class="navbar-item" [routerLink]="['']">
+                <h1 class="label has-text-white">DISLINKT</h1>
+            </a>
             <div class="field has-addons">
                 <div class="control">
                     <input class="input" type="text" placeholder="Find profiles">
@@ -24,7 +26,24 @@
         <div class="navbar-start">
 
             <!--  https://bulma.io/documentation/components/navbar/#basic-navbar  -->
-            
+        </div>
+
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <div class="buttons">
+                    <span *ngIf="true">
+                        <a class="button" [routerLink]="['/login']">
+                            Login
+                        </a>
+                        <a class="button is-primary" [routerLink]="['/registration']">
+                            <strong>Register</strong>
+                        </a>
+                    </span>
+                </div>
+            </div>
+
+
+
         </div>
     </div>
 </nav>
