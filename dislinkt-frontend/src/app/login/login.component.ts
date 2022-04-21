@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AuthService } from '../auth.service';
@@ -12,6 +13,9 @@ export class LoginComponent implements OnInit {
 
   username = ""
   password = ""
+
+  usernameForm = new FormControl('', [Validators.required]);
+  passwordForm = new FormControl('', [Validators.required]);
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -50,5 +54,14 @@ export class LoginComponent implements OnInit {
           })
       }
     )
+  }
+  getUsernameErrorMessage(){
+    return this.usernameForm.hasError('required') ? 'You must enter a value' :
+        '';
+  }
+
+  getPasswordErrorMessage(){
+    return this.passwordForm.hasError('required') ? 'You must enter a value' :
+        '';
   }
 }
