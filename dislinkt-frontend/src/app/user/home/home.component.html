@@ -1,0 +1,30 @@
+<section class="hero is-medium">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <div class="column is-4 is-offset-4">
+
+                <mat-card class="example-card">
+                    <div style="margin-left: 15%; margin-right: 15%;">
+                        <mat-card-header>
+                        </mat-card-header>
+                        <br>
+                        <mat-card-content style="margin-left: 1%; margin-right: 1%;">
+                            <br>
+                            <mat-form-field appearance="legacy" style="width: 100%;">
+                                <mat-label>Search</mat-label>
+                                <input type="search" matInput placeholder="search" [(ngModel)]="this.searchParam" >
+                            </mat-form-field>
+                            <br>
+                            <div style="text-align: center;">
+                                <button mat-raised-button color="primary" [routerLink]="['/search']" [queryParams]="{searchParam:this.searchParam}">
+                                    Search
+                                </button>
+                            </div>
+                        </mat-card-content>
+                        <br>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</section>

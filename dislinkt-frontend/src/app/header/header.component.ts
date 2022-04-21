@@ -13,6 +13,8 @@ export class HeaderComponent implements OnInit {
   @ViewChild('navMenu')
   navMenu!: ElementRef;
 
+  searchParam=""
+
   constructor(public authService: AuthService) { }
 
   ngOnInit(): void {

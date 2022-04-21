@@ -1,0 +1,50 @@
+<section class="hero is-small">
+    <div class="hero-body">
+        <div class="container">
+            <div class="column is-10 is-offset-4 has-text-centered">
+                <div class="field has-addons">
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Find profiles" [(ngModel)]="this.searchParam">
+                    </div>
+                    <div class="control">
+                        <a class="button is-info" (click)="search()">
+                            Search
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="hero is-medium">
+    <div class="hero-body">
+        <div class="container">
+            <div class="column is-10 is-offset-1">
+                <mat-error *ngIf="users == null || users.length == 0">There is no users for that search param
+                </mat-error>
+
+                <mat-card *ngFor="let user of users" style="margin-bottom: 15px;">
+                    <mat-card-title class="has-text-centered">{{user.name}} {{user.surname}}</mat-card-title>
+                    <mat-card-content>
+                        <div class="columns">
+                            <div class="column is-half">
+                                <p>Username: {{user.username}}</p>
+                                <br>
+                                <p>Birth date: {{user.birthDate| date:"dd.MM.yyyy"}}</p>
+                                <br>
+                                <p>Email: {{user.email}}</p>
+
+                            </div>
+                            <div class="column is-half">
+                                <p class="cut-text1">Bio: {{user.bio}} </p>
+
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+
+            </div>
+        </div>
+    </div>
+</section>

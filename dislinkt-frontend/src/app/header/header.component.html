@@ -4,16 +4,16 @@
             <a class="navbar-item" [routerLink]="['']">
                 <h1 class="label has-text-white">DISLINKT</h1>
             </a>
-            <div class="field has-addons">
+            <!--<div class="field has-addons" *ngIf="this.authService.getRole() != null">
                 <div class="control">
-                    <input class="input" type="text" placeholder="Find profiles">
+                    <input class="input" type="text" placeholder="Find profiles" [(ngModel)]="this.searchParam">
                 </div>
                 <div class="control">
-                    <a class="button is-info">
+                    <a class="button is-info" [routerLink]="['/search']" [queryParams]="{searchParam:this.searchParam}">
                         Search
                     </a>
                 </div>
-            </div>
+            </div>-->
         </span>
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample"
             (click)="toggleNavbar()" #navBurger>

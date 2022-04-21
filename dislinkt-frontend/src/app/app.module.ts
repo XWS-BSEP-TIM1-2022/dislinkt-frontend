@@ -22,18 +22,22 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatRadioModule } from '@angular/material/radio';
-import {MatNativeDateModule} from '@angular/material/core';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 
 import { RegistrationComponent } from './registration/registration.component';
+import { HomeComponent } from './user/home/home.component';
+import { SearchComponent } from './user/search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    HomeComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

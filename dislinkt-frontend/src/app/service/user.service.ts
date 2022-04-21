@@ -14,5 +14,7 @@ export class UserService {
     return this.http.post(environment.serverUrl + 'users', user)
   }
 
-
+  searchUser(searchParam: string){
+    return this.http.get(environment.serverUrl + 'users/search?searchParam=' + searchParam)
+  }
 }
