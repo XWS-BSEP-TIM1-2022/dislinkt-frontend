@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +20,9 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    if (this.authService.getRole() != null) {
+      this.router.navigate(['/'])
+    }
   }
 
   login(): void {
@@ -28,7 +31,7 @@ export class LoginComponent implements OnInit {
         console.log(data)
         localStorage.setItem('token', data.token)
         localStorage.setItem('role', data.role)
-        localStorage.setItem('mailAddress', data.email)
+        localStorage.setItem('email', data.email)
         localStorage.setItem('userId', data.userId)
         Swal.fire(
           {
@@ -55,13 +58,13 @@ export class LoginComponent implements OnInit {
       }
     )
   }
-  getUsernameErrorMessage(){
+  getUsernameErrorMessage() {
     return this.usernameForm.hasError('required') ? 'You must enter a value' :
-        '';
+      '';
   }
 
-  getPasswordErrorMessage(){
+  getPasswordErrorMessage() {
     return this.passwordForm.hasError('required') ? 'You must enter a value' :
-        '';
+      '';
   }
 }

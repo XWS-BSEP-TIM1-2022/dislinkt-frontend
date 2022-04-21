@@ -1,0 +1,106 @@
+<section class="hero is-medium">
+    <div class="hero-body">
+        <div class="container ">
+            <div class="column is-6 is-offset-3">
+
+                <mat-card class="example-card">
+                    <div style="margin-left: 15%; margin-right: 15%;">
+                        <br>
+                        <mat-card-content style="margin-left: 1%; margin-right: 1%;">
+                            <br>
+                            <mat-form-field appearance="legacy" style="width: 100%;">
+                                <mat-label>Name</mat-label>
+                                <input type="text" matInput placeholder="name" [(ngModel)]="user.name"
+                                    [formControl]="nameForm" required>
+
+                                <mat-error *ngIf="nameForm.invalid">{{getnameErrorMessage()}}</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="legacy" style="width: 100%;">
+                                <mat-label>Surname</mat-label>
+                                <input type="text" matInput placeholder="surname" [(ngModel)]="user.surname"
+                                    [formControl]="surnameForm" required>
+
+                                <mat-error *ngIf="surnameForm.invalid">{{getsurnameErrorMessage()}}</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="legacy" style="width: 100%;">
+                                <mat-label>Email</mat-label>
+                                <input type="text" matInput placeholder="email" [(ngModel)]="user.email"
+                                    [formControl]="emailForm" required>
+
+                                <mat-error *ngIf="emailForm.invalid">{{getEmailErrorMessage()}}</mat-error>
+                            </mat-form-field>
+
+                            <mat-label classid="example-radio-group-label">Gender</mat-label>
+                            <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                                [(ngModel)]="user.gender">
+                                <mat-radio-button class="example-radio-button" [value]="0">
+                                    Male
+                                </mat-radio-button>
+                                <mat-radio-button class="example-radio-button" [value]="1">
+                                    Female
+                                </mat-radio-button>
+                            </mat-radio-group>
+
+                            <mat-form-field appearance="legacy" style="width: 100%;">
+                                <mat-label>Choose a date</mat-label>
+                                <input matInput [matDatepicker]="picker" [(ngModel)]="user.birthDate" [max]="maxDate" [formControl]="dateForm">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                                <mat-error *ngIf="dateForm.invalid">{{getDateErrorMessage()}}</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="legacy" style="width: 100%;">
+                                <mat-label>Phone</mat-label>
+                                <input type="text" matInput placeholder="phoneNumber" [(ngModel)]="user.phoneNumber"
+                                    [formControl]="phoneForm">
+
+                                <mat-error *ngIf="phoneForm.invalid">{{getPhoneErrorMessage()}}</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="legacy" style="width: 100%;">
+                                <mat-label>Username</mat-label>
+                                <input type="text" matInput placeholder="username" [(ngModel)]="user.username"
+                                    [formControl]="usernameForm" required>
+
+                                <mat-error *ngIf="usernameForm.invalid">{{getUsernameErrorMessage()}}</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="legacy" style="width: 100%;">
+                                <mat-label>Password</mat-label>
+                                <input type="password" matInput placeholder="password" [(ngModel)]="user.password" required
+                                    [formControl]="passwordForm">
+                                <mat-error *ngIf="passwordForm.invalid">{{getPasswordErrorMessage()}}</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="legacy" style="width: 100%;">
+                                <mat-label>Confirm password</mat-label>
+                                <input type="password" matInput placeholder="confirmPassword"
+                                    [(ngModel)]="user.confirmPassword" [formControl]="confirmPasswordForm" required>
+
+                                <mat-error *ngIf="confirmPasswordForm.invalid">{{getConfirmPasswordErrorMessage()}}
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="legacy" style="width: 100%;">
+                                <mat-label>Bio</mat-label>
+                                <textarea matInput placeholder="bio" [(ngModel)]="user.bio"
+                                   ></textarea>
+
+                            </mat-form-field>
+
+                            <div style="text-align: center;">
+                                <button mat-raised-button color="primary" (click)="register()"
+                                    [disabled]="usernameForm.invalid || passwordForm.invalid">
+                                    Register
+                                </button>
+                            </div>
+                        </mat-card-content>
+                        <br>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</section>

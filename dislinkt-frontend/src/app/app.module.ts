@@ -19,12 +19,21 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatRadioModule } from '@angular/material/radio';
+import {MatNativeDateModule} from '@angular/material/core';
+
+
+
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    LoginComponent
+    LoginComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +51,10 @@ import { MatSelectModule } from '@angular/material/select';
     MatSnackBarModule,
     MatIconModule,
     MatSelectModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatRadioModule,
+    MatNativeDateModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

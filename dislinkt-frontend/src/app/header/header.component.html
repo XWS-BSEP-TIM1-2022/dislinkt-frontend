@@ -31,12 +31,17 @@
         <div class="navbar-end">
             <div class="navbar-item">
                 <div class="buttons">
-                    <span *ngIf="true">
+                    <span *ngIf="this.authService.getRole() == null">
                         <a class="button" [routerLink]="['/login']">
                             Login
                         </a>
                         <a class="button is-primary" [routerLink]="['/registration']">
                             <strong>Register</strong>
+                        </a>
+                    </span>
+                    <span *ngIf="this.authService.getRole() != null">
+                        <a class="button is-warning" [routerLink]="['']" (click)="this.authService.logout()">
+                            Logout
                         </a>
                     </span>
                 </div>
