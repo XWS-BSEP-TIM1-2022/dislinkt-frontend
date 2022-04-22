@@ -74,7 +74,10 @@
               "browserTarget": "dislinkt-frontend:build:production"
             },
             "development": {
-              "browserTarget": "dislinkt-frontend:build:development"
+              "browserTarget": "dislinkt-frontend:build:development",
+              "ssl": true,
+              "sslKey": "src/assets/certificates/dislinkt_front_private_key.key",
+              "sslCert": "src/assets/certificates/dislinkt_front.cer"
             }
           },
           "defaultConfiguration": "development"
