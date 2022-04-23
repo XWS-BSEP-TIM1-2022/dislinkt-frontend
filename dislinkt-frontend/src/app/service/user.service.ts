@@ -7,7 +7,6 @@ import { User } from '../registration/user';
   providedIn: 'root'
 })
 export class UserService {
-
   constructor(private http: HttpClient) { }
 
   register(user: User) {
@@ -28,5 +27,18 @@ export class UserService {
 
   searchUser(searchParam: string){
     return this.http.get(environment.serverUrl + 'users/search?searchParam=' + searchParam)
+  }
+
+  editPassword(newPassword: any, oldPassword: any, id: any) {
+    var header = {
+      headers: new HttpHeaders()
+        .set('Authorization', `${localStorage.getItem('token')}`)
+    }
+    var body = {
+        "userId": id,
+        "password": newPassword,
+        "oldPassword": oldPassword
+      }
+    return this.http.put(environment.serverUrl + 'users', body, header)
   }
 }

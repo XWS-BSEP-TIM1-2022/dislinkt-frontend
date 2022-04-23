@@ -16,6 +16,9 @@ export class InfoComponent implements OnInit {
   genders: number[] = [0, 1];
   userId: string | null = "";
 
+  newPassword: string = ""
+  oldPassword: string = ""
+
   user = new User("", "", "", "", 0, "", "", "", "", "")
 
   nameForm = new FormControl('', [Validators.required]);
@@ -24,6 +27,9 @@ export class InfoComponent implements OnInit {
   dateForm = new FormControl('', [Validators.required]);
   phoneForm = new FormControl('', [this.phoneNumberValidator()]);
   usernameForm = new FormControl('', [Validators.required]);
+
+  newPasswordForm = new FormControl('', [Validators.required])
+  oldPasswordForm = new FormControl('', [Validators.required])
 
   phoneNumberValidator(): ValidatorFn {
     return Validators.pattern('[- +()0-9]+');
@@ -84,6 +90,30 @@ export class InfoComponent implements OnInit {
 
   edit() {
     this.userService.edit(this.user, this.userId!).subscribe(
+      (data) => {
+        Swal.fire(
+          {
+            icon: 'success',
+            title: 'Successfully registrated',
+            text: 'Here can login',
+            timer: 3000,
+            showConfirmButton: false,
+          })
+      },
+      (error) => {
+        Swal.fire(
+          {
+            icon: 'error',
+            title: error.error.message,
+            timer: 3000,
+            showConfirmButton: false,
+          })
+      }
+    )
+  }
+
+  editPassword(){
+    this.userService.editPassword(this.newPassword, this.oldPassword, this.userId!).subscribe(
       (data) => {
         Swal.fire(
           {

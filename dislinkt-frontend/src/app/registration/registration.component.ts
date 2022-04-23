@@ -15,6 +15,9 @@ export class RegistrationComponent implements OnInit {
   maxDate: Date;
   genders: number[] = [0, 1];
 
+  newPassword: string = ""
+  oldPassword: string = ""
+
   user = new User("", "", "", "", 0, "", "", "", "", "")
 
   nameForm = new FormControl('', [Validators.required]);
@@ -25,6 +28,7 @@ export class RegistrationComponent implements OnInit {
   usernameForm = new FormControl('', [Validators.required]);
   passwordForm = new FormControl('', [Validators.required]);
   confirmPasswordForm = new FormControl('', [Validators.required, this.equalsToPasswordValidator()]);
+
 
   equalsToPasswordValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null =>
@@ -70,6 +74,8 @@ export class RegistrationComponent implements OnInit {
       }
     )
   }
+
+
 
   getnameErrorMessage() {
     return this.usernameForm.hasError('required') ? 'You must enter a value' :
