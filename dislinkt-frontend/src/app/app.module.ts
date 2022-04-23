@@ -29,6 +29,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { RegistrationComponent } from './registration/registration.component';
 import { HomeComponent } from './user/home/home.component';
 import { SearchComponent } from './user/search/search.component';
+import { InfoComponent } from './user/info/info.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { SearchComponent } from './user/search/search.component';
     LoginComponent,
     RegistrationComponent,
     HomeComponent,
-    SearchComponent
+    SearchComponent,
+    InfoComponent
   ],
   imports: [
     BrowserModule,

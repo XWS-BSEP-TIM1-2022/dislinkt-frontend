@@ -77,7 +77,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   getsurnameErrorMessage() {
-    return this.passwordForm.hasError('required') ? 'You must enter a value' :
+    return this.surnameForm.hasError('required') ? 'You must enter a value' :
       '';
   }
 
@@ -94,7 +94,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   getPhoneErrorMessage() {
-    return this.passwordForm.hasError('validators') ? '' :
+    return this.phoneForm.hasError('validators') ? '' :
       'Phone number not in correct format';
   }
 

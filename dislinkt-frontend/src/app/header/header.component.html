@@ -39,6 +39,11 @@
                             <strong>Register</strong>
                         </a>
                     </span>
+                    <span *ngIf="this.authService.getRole() === 'USER'">
+                        <a class="button is-success" style="margin-right: 1rem;" [routerLink]="['/info']">
+                            Profile info
+                        </a>
+                    </span>
                     <span *ngIf="this.authService.getRole() != null">
                         <a class="button is-warning" [routerLink]="['']" (click)="this.authService.logout()">
                             Logout
