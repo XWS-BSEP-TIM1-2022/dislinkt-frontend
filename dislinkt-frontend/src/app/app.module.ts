@@ -25,7 +25,6 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatNativeDateModule } from '@angular/material/core';
 
 
-
 import { RegistrationComponent } from './registration/registration.component';
 import { HomeComponent } from './user/home/home.component';
 import { SearchComponent } from './user/search/search.component';

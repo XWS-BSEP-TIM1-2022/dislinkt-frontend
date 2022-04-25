@@ -50,4 +50,8 @@ export class UserService {
   addNewExperience(experience: Experience){
     return this.http.post(environment.serverUrl + 'users/experience', experience)
   }
+
+  deleteExperience(experienceId: string) {
+    return this.http.delete(environment.serverUrl + 'users/experience/' + experienceId)
+  }
 }

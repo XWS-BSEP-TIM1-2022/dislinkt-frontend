@@ -135,6 +135,9 @@
         <mat-card-content>
             <p>{{exp.startDate}} - {{exp.endDate}}</p>
         </mat-card-content>
+        <button mat-fab color="primary" (click)="delete(exp.id)">
+            Delete
+        </button>
     </mat-card>
 </div>
 <div>

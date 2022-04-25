@@ -180,4 +180,31 @@ export class InfoComponent implements OnInit {
     )
   }
 
+  delete(experienceId: string){
+    this.userService.deleteExperience(experienceId).subscribe(
+      (data) => {
+        Swal.fire(
+          {
+            icon: 'success',
+            title: 'Experience deleted succesfully',
+            text: 'Deleted',
+            timer: 3000,
+            showConfirmButton: false,
+          })
+          this.userService.getExperiences(this.userId!).subscribe((res:any) => {
+            this.experiences = res.experiences
+          })
+      },
+      (error) => {
+        Swal.fire(
+          {
+            icon: 'error',
+            title: error.error.message,
+            timer: 3000,
+            showConfirmButton: false,
+          })
+      }
+    )
+  }
+
 }
