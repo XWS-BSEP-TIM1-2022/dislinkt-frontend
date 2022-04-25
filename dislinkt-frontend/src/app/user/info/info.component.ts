@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Experience } from 'src/app/model/experience.model';
 import { AuthService } from 'src/app/service/auth.service';
 import { UserService } from 'src/app/service/user.service';
 import Swal from 'sweetalert2';
@@ -19,7 +20,10 @@ export class InfoComponent implements OnInit {
   newPassword: string = ""
   oldPassword: string = ""
 
+  newExperience: Experience = new Experience;
+
   user = new User("", "", "", "", 0, "", "", "", "", "")
+  experiences = [] as Experience[]
 
   nameForm = new FormControl('', [Validators.required]);
   surnameForm = new FormControl('', [Validators.required]);
@@ -31,6 +35,11 @@ export class InfoComponent implements OnInit {
   newPasswordForm = new FormControl('', [Validators.required])
   oldPasswordForm = new FormControl('', [Validators.required])
 
+  experiencePlace = new FormControl('', [Validators.required])
+  experienceTitle = new FormControl('', [Validators.required])
+  experienceStartDate = new FormControl('', [Validators.required])
+  experienceEndDate = new FormControl('', [Validators.required])
+
   phoneNumberValidator(): ValidatorFn {
     return Validators.pattern('[- +()0-9]+');
   }
@@ -41,20 +50,25 @@ export class InfoComponent implements OnInit {
 
   ngOnInit(): void {
     if (localStorage.getItem('userId') != null){
+      this.userId = localStorage.getItem('userId');
+      this.userService.getUserData(this.userId!).subscribe((res:any) => {
+      this.user.name = res.user.name
+      this.user.surname = res.user.surname
+      this.user.email = res.user.email
+      this.user.birthDate = res.user.birthDate.split(" ")[0];
+      this.user.phoneNumber = res.user.phoneNumber
+      this.user.username = res.user.username
+      this.user.gender =  Number(res.user.gender)
+      this.user.bio = res.user.bio
 
-    }
-    this.userId = localStorage.getItem('userId');
-    this.userService.getUserData(this.userId!).subscribe((res:any) => {
-      console.log(res);
-     this.user.name = res.user.name
-     this.user.surname = res.user.surname
-     this.user.email = res.user.email
-     this.user.birthDate = res.user.birthDate.split(" ")[0];
-     this.user.phoneNumber = res.user.phoneNumber
-     this.user.username = res.user.username
-     this.user.gender =  Number(res.user.gender)
-     this.user.bio = res.user.bio
+      this.newExperience.userId = this.userId!
+      
+      this.userService.getExperiences(this.userId!).subscribe((res:any) => {
+        this.experiences = res.experiences
+      })
     })
+  }
+    
   }
 
   getnameErrorMessage() {
@@ -118,11 +132,41 @@ export class InfoComponent implements OnInit {
         Swal.fire(
           {
             icon: 'success',
-            title: 'Successfully registrated',
+            title: 'Password succefully changed',
             text: 'Here can login',
             timer: 3000,
             showConfirmButton: false,
           })
+      },
+      (error) => {
+        Swal.fire(
+          {
+            icon: 'error',
+            title: error.error.message,
+            timer: 3000,
+            showConfirmButton: false,
+          })
+      }
+    )
+  }
+
+  addNewExperience() {
+    this.userService.addNewExperience(this.newExperience).subscribe(
+      (data) => {
+        Swal.fire(
+          {
+            icon: 'success',
+            title: 'Successfully added new experience',
+            text: 'Here can login',
+            timer: 3000,
+            showConfirmButton: false,
+          })
+          this.userService.getExperiences(this.userId!).subscribe((res:any) => {
+            this.experiences = res.experiences
+          })
+          this.newExperience = new Experience
+          this.newExperience.userId = this.userId!
+
       },
       (error) => {
         Swal.fire(

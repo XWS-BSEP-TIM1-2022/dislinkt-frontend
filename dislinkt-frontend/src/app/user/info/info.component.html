@@ -126,3 +126,52 @@
         </div>
     </div>
 </section>
+<div style="text-align: center; display: flex; flex-direction: column;">
+    <h1 style="font-weight: bold; font-size: 2rem;">Experiences:</h1>
+    <mat-card *ngFor="let exp of this.experiences" 
+    style="margin-top: 1rem; margin-left: 25%; margin-right: 25%; margin-bottom: 1rem;">
+        <mat-card-title>{{exp.name}}</mat-card-title>
+        <mat-card-subtitle>{{exp.title}}</mat-card-subtitle>
+        <mat-card-content>
+            <p>{{exp.startDate}} - {{exp.endDate}}</p>
+        </mat-card-content>
+    </mat-card>
+</div>
+<div>
+    <mat-card style="margin-top: 1rem; margin-left: 25%; margin-right: 25%; margin-bottom: 1rem;">
+        <div style="display: flex; flex-direction: column;">
+            <mat-form-field appearance="fill">
+                <mat-label>Place:</mat-label>
+                <input matInput [(ngModel)]="newExperience.name"
+                [formControl]="experiencePlace" required>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Title:</mat-label>
+                <input matInput [(ngModel)]="newExperience.title"
+                [formControl]="experienceTitle">
+            </mat-form-field>
+        </div>
+        <mat-form-field appearance="legacy" style="width: 100%;">
+            <mat-label>Choose start date:</mat-label>
+            <input matInput [matDatepicker]="start" [(ngModel)]="newExperience.startDate" [formControl]="experienceStartDate">
+            <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+            <mat-datepicker #start></mat-datepicker>
+            <mat-error *ngIf="dateForm.invalid">{{getDateErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="legacy" style="width: 100%;">
+            <mat-label>Choose end date:</mat-label>
+            <input matInput [matDatepicker]="end" [(ngModel)]="newExperience.endDate" [formControl]="experienceEndDate">
+            <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
+            <mat-datepicker #end></mat-datepicker>
+            <mat-error *ngIf="dateForm.invalid">{{getDateErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="addNewExperience()"
+                                        [disabled]="
+                                        experiencePlace.invalid
+                                        || experienceTitle.invalid
+                                        || experienceStartDate.invalid
+                                        || experienceEndDate.invalid">
+                                        Add new
+        </button>
+    </mat-card>
+</div>

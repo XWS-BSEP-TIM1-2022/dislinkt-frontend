@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { Experience } from '../model/experience.model';
 import { User } from '../registration/user';
 
 @Injectable({
@@ -40,5 +41,13 @@ export class UserService {
         "oldPassword": oldPassword
       }
     return this.http.put(environment.serverUrl + 'users', body, header)
+  }
+
+  getExperiences(userId: string){
+    return this.http.get(environment.serverUrl + 'users/experience/' + userId)
+  }
+
+  addNewExperience(experience: Experience){
+    return this.http.post(environment.serverUrl + 'users/experience', experience)
   }
 }
