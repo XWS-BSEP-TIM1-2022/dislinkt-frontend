@@ -178,3 +178,16 @@
         </button>
     </mat-card>
 </div>
+<div style="text-align: center; display: flex; flex-direction: column;">
+    <h1 style="font-weight: bold; font-size: 2rem;">Skills:</h1>
+    <h2 style="margin-left: 1rem;" *ngFor="let skill of this.user.skills">
+        {{skill}}
+    </h2>
+</div>
+<br>
+<div style="text-align: center; display: flex; flex-direction: column;">
+    <h1 style="font-weight: bold; font-size: 2rem;">Interests:</h1>
+    <h2 style="margin-left: 1rem;" *ngFor="let interest of this.user.interests">
+        {{interest}}
+    </h2>
+</div>

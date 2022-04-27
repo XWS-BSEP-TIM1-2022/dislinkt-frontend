@@ -22,7 +22,7 @@ export class InfoComponent implements OnInit {
 
   newExperience: Experience = new Experience;
 
-  user = new User("", "", "", "", 0, "", "", "", "", "")
+  user = new User("", "", "", "", 0, "", "", "", "", "", [], [])
   experiences = [] as Experience[]
 
   nameForm = new FormControl('', [Validators.required]);
@@ -60,6 +60,8 @@ export class InfoComponent implements OnInit {
       this.user.username = res.user.username
       this.user.gender =  Number(res.user.gender)
       this.user.bio = res.user.bio
+      this.user.skills = res.user.skills
+      this.user.interests = res.user.interests
 
       this.newExperience.userId = this.userId!
       

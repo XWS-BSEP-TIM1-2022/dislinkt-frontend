@@ -10,5 +10,7 @@ export class User{
         public password: string,
         public confirmPassword: string,
         public bio: string,
+        public skills: [],
+        public interests: []
     ){}
 } 
