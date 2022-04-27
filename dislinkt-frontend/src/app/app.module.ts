@@ -29,6 +29,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { HomeComponent } from './user/home/home.component';
 import { SearchComponent } from './user/search/search.component';
 import { InfoComponent } from './user/info/info.component';
+import { NewPostComponent } from './user/new-post/new-post.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { InfoComponent } from './user/info/info.component';
     RegistrationComponent,
     HomeComponent,
     SearchComponent,
-    InfoComponent
+    InfoComponent,
+    NewPostComponent
   ],
   imports: [
     BrowserModule,

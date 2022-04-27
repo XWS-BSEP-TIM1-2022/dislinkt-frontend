@@ -1,0 +1,60 @@
+<section class="hero is-medium">
+    <div class="hero-body">
+        <div class="container ">
+            <div class="column is-6 is-offset-3">
+
+                <mat-card class="example-card">
+                    <div style="margin-left: 15%; margin-right: 15%;">
+                        <br>
+                        <mat-card-content style="margin-left: 1%; margin-right: 1%;">
+                            <br>
+                            <!-- slika -->
+                            <img class="images" [src]="post.image" width="250" height="250" alt="Upload some photo" />
+                            <div class="file has-name is-fullwidth">
+                                <label class="file-label">
+                                    <input class="file-input" type="file" accept=".jpg, .jpeg, .png"
+                                        (change)="uploadImage($event)">
+                                    <span class="file-cta">
+                                        <span class="file-label">
+                                            Choose a file…
+                                        </span>
+                                    </span>
+                                    <span class="file-name">
+                                        {{imageName}}
+                                    </span>
+                                </label>
+                            </div>
+
+
+                            <mat-form-field appearance="legacy" style="width: 100%;">
+                                <mat-label>Text</mat-label>
+                                <input type="text" matInput placeholder="text" [(ngModel)]="post.text"
+                                    [formControl]="textForm" required>
+
+                                <mat-error *ngIf="textForm.invalid">{{getTextErrorMessage()}}</mat-error>
+                            </mat-form-field>
+
+                            <!--
+                            <mat-form-field appearance="legacy" style="width: 100%;">
+                                <mat-label>Email</mat-label>
+                                <input type="text" matInput placeholder="email" [(ngModel)]="user.email"
+                                    [formControl]="emailForm" required>
+
+                                <mat-error *ngIf="emailForm.invalid">{{getEmailErrorMessage()}}</mat-error>
+                            </mat-form-field>
+                            -->
+
+                            <div style="text-align: center;">
+                                <button mat-raised-button color="primary" (click)="createPost()"
+                                    [disabled]="textForm.invalid">
+                                    Create post
+                                </button>
+                            </div>
+                        </mat-card-content>
+                        <br>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</section>
