@@ -1,1 +1,26 @@
-<p>requests works!</p>
+<section class="hero is-small">
+    <div class="hero-body">
+        <div class="container">
+            <div class="column is-10 is-offset-1">
+                <mat-error *ngIf="connections == null || connections.length == 0">There is no requests</mat-error>
+
+                <mat-card *ngFor="let connection of connections" style="margin-bottom: 15px;">
+                    <mat-card-title class="has-text-centered">
+                        <div class="columns">
+                            <div class="column">
+                                {{connection.name}} {{connection.surname}}
+                            </div>
+                            <div class="column is-2">
+                                <a (click)="approveConnection(connection)" class="mr-5"><mat-icon class="is-size-1">check</mat-icon></a>
+                                <a (click)="rejectConnection(connection)"><mat-icon color = "warn" class="is-size-1">close</mat-icon></a>
+                            </div>
+                        </div>
+
+                    </mat-card-title>
+                    
+                </mat-card>
+
+            </div>
+        </div>
+    </div>
+</section>

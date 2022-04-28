@@ -130,7 +130,7 @@ export class SearchComponent implements OnInit {
   }
 
   rejectConnection(user: any) {
-    this.connectionService.rejectConnection(user.id).subscribe(
+    this.connectionService.rejectConnection(localStorage.getItem('userId'), user.id).subscribe(
       (data: any) => {
         user.isConnected = false
         user.pendingConnection = false

@@ -24,12 +24,20 @@ export class ConnectionService {
     return this.http.post(environment.serverUrl + 'connections', { userId: localStorage.getItem("userId"), connectedUserId: connectedUserId }, header)
   }
 
-  rejectConnection(connectedUserId: any) {
+  rejectConnection(userId:any, connectedUserId: any) {
     var header = {
       headers: new HttpHeaders()
         .set('Authorization', `${localStorage.getItem('token')}`)
     }
-    return this.http.put(environment.serverUrl + 'connections/reject', { userId: localStorage.getItem("userId"), connectedUserId: connectedUserId }, header)
+    return this.http.put(environment.serverUrl + 'connections/reject', { userId: userId, connectedUserId: connectedUserId }, header)
+  }
+
+  approveConnection(userId: any, connectedUserId: any) {
+    var header = {
+      headers: new HttpHeaders()
+        .set('Authorization', `${localStorage.getItem('token')}`)
+    }
+    return this.http.put(environment.serverUrl + 'connections/approve', { userId: userId, connectedUserId: connectedUserId }, header)
   }
 
   deleteConnection(connectedUserId: any) {
@@ -44,5 +52,13 @@ export class ConnectionService {
         .append("connectedUserId", connectedUserId)
     }
     return this.http.delete(environment.serverUrl + 'connections', header)
+  }
+
+  getRequestsConnections() {
+    var header = {
+      headers: new HttpHeaders()
+        .set('Authorization', `${localStorage.getItem('token')}`)
+    }
+    return this.http.get(environment.serverUrl + 'connections/requests/' + localStorage.getItem("userId"), header)
   }
 }
