@@ -5,16 +5,18 @@ import { RegistrationComponent } from './registration/registration.component';
 import { HomeComponent } from './user/home/home.component';
 import { InfoComponent } from './user/info/info.component';
 import { NewPostComponent } from './user/new-post/new-post.component';
+import { RequestsComponent } from './user/requests/requests.component';
 import { SearchComponent } from './user/search/search.component';
 
 const routes: Routes = [
-  
+
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'registration', component: RegistrationComponent },
   { path: 'search', component: SearchComponent },
   { path: 'info', component: InfoComponent },
-  { path: 'newPost', component: NewPostComponent}
+  { path: 'newPost', component: NewPostComponent },
+  { path: 'requests', component: RequestsComponent },
 ];
 
 @NgModule({

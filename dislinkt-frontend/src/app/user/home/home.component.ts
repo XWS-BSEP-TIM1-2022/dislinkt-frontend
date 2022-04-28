@@ -16,7 +16,8 @@ export class HomeComponent implements OnInit {
   }
 
   search(){
-    this.router.navigateByUrl('/search?searchParam=' + this.searchParam)
+    localStorage.setItem('searchParam', this.searchParam)
+    this.router.navigateByUrl('/search')
   }
 
 }

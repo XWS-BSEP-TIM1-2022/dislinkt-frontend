@@ -25,7 +25,19 @@
                 </mat-error>
 
                 <mat-card *ngFor="let user of users" style="margin-bottom: 15px;">
-                    <mat-card-title class="has-text-centered">{{user.name}} {{user.surname}}</mat-card-title>
+                    <mat-card-title class="has-text-centered">
+                        <div class="columns">
+                            <div class="column">
+                                {{user.name}} {{user.surname}}
+                            </div>
+                            <div class="column is-2">
+                                <a (click)="newConnection(user)"><mat-icon color = "accent" class="is-size-1" *ngIf="!user.isConnected && !user.pendingConnection">person_add</mat-icon></a>
+                                <a (click)="deleteConnection(user)"><mat-icon color = "warn" class="is-size-1" *ngIf="user.isConnected">close</mat-icon></a>
+                                <a (click)="rejectConnection(user)"><mat-icon class="is-size-1" *ngIf="!user.isConnected && user.pendingConnection">sync_disabled</mat-icon></a>
+                            </div>
+                        </div>
+
+                    </mat-card-title>
                     <mat-card-content>
                         <div class="columns">
                             <div class="column is-half">
@@ -38,7 +50,6 @@
                             </div>
                             <div class="column is-half">
                                 <p class="cut-text1">Bio: {{user.bio}} </p>
-
                             </div>
                         </div>
                     </mat-card-content>

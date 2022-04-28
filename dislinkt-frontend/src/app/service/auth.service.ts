@@ -26,4 +26,8 @@ export class AuthService {
     return localStorage.getItem('role');
   }
 
+  isPrivate(){
+    return localStorage.getItem('isPrivate');
+  }
+
 }

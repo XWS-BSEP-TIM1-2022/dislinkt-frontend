@@ -16,7 +16,7 @@
                             </mat-form-field>
                             <br>
                             <div style="text-align: center;">
-                                <button mat-raised-button color="primary" [routerLink]="['/search']" [queryParams]="{searchParam:this.searchParam}">
+                                <button mat-raised-button color="primary" (click)="search()">
                                     Search
                                 </button>
                             </div>

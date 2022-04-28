@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('role', data.role)
         localStorage.setItem('email', data.email)
         localStorage.setItem('userId', data.userId)
+        localStorage.setItem('isPrivate', data.isPrivate)
         Swal.fire(
           {
             icon: 'success',
