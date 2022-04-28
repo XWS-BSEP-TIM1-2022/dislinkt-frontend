@@ -22,12 +22,22 @@ export class UserService {
     return this.http.put(environment.serverUrl + 'users/' + id, user, header)
   }
 
-  getUserData(userId: string){
+  getUserData(userId: string) {
     return this.http.get(environment.serverUrl + 'users/' + userId);
   }
 
-  searchUser(searchParam: string){
-    return this.http.get(environment.serverUrl + 'users/search?searchParam=' + searchParam)
+  searchUser(searchParam: string) {
+    var header = {
+      headers: new HttpHeaders()
+    }
+    var userId = localStorage.getItem('userId')
+    if (userId != null) {
+      header = {
+        headers: new HttpHeaders()
+          .set('Authorization', `${localStorage.getItem('token')}`)
+      }
+    }
+    return this.http.get(environment.serverUrl + 'users/search?searchParam=' + searchParam, header)
   }
 
   editPassword(newPassword: any, oldPassword: any, id: any) {
@@ -36,18 +46,18 @@ export class UserService {
         .set('Authorization', `${localStorage.getItem('token')}`)
     }
     var body = {
-        "userId": id,
-        "password": newPassword,
-        "oldPassword": oldPassword
-      }
+      "userId": id,
+      "password": newPassword,
+      "oldPassword": oldPassword
+    }
     return this.http.put(environment.serverUrl + 'users', body, header)
   }
 
-  getExperiences(userId: string){
+  getExperiences(userId: string) {
     return this.http.get(environment.serverUrl + 'users/experience/' + userId)
   }
 
-  addNewExperience(experience: Experience){
+  addNewExperience(experience: Experience) {
     return this.http.post(environment.serverUrl + 'users/experience', experience)
   }
 
