@@ -22,6 +22,9 @@ export class InfoComponent implements OnInit {
 
   newExperience: Experience = new Experience;
 
+  newSkill: string = "";
+  newInterest: string = "";
+
   user = new User("", "", "", "", 0, "", "", "", "", "", [], [])
   experiences = [] as Experience[]
 
@@ -39,6 +42,10 @@ export class InfoComponent implements OnInit {
   experienceTitle = new FormControl('', [Validators.required])
   experienceStartDate = new FormControl('', [Validators.required])
   experienceEndDate = new FormControl('', [Validators.required])
+
+  newSkillForm = new FormControl('', [Validators.required]);
+
+  newInterestForm = new FormControl('', [Validators.required]);
 
   phoneNumberValidator(): ValidatorFn {
     return Validators.pattern('[- +()0-9]+');
@@ -195,6 +202,118 @@ export class InfoComponent implements OnInit {
           })
           this.userService.getExperiences(this.userId!).subscribe((res:any) => {
             this.experiences = res.experiences
+          })
+      },
+      (error) => {
+        Swal.fire(
+          {
+            icon: 'error',
+            title: error.error.message,
+            timer: 3000,
+            showConfirmButton: false,
+          })
+      }
+    )
+  }
+
+  addNewSkill(){
+    this.userService.addNewSkill(this.newSkill, this.userId!).subscribe(
+      (data) => {
+        Swal.fire(
+          {
+            icon: 'success',
+            title: 'Skill added succesfully',
+            text: 'Added',
+            timer: 3000,
+            showConfirmButton: false,
+          })
+          this.userService.getUserData(this.userId!).subscribe((res:any) => {
+            this.user.skills = res.user.skills
+            this.user.interests = res.user.interests
+          })
+      },
+      (error) => {
+        Swal.fire(
+          {
+            icon: 'error',
+            title: error.error.message,
+            timer: 3000,
+            showConfirmButton: false,
+          })
+      }
+    )
+  }
+
+  addNewInterest(){
+    this.userService.addNewInterest(this.newInterest, this.userId!).subscribe(
+      (data) => {
+        Swal.fire(
+          {
+            icon: 'success',
+            title: 'Interest added succesfully',
+            text: 'Added',
+            timer: 3000,
+            showConfirmButton: false,
+          })
+          this.userService.getUserData(this.userId!).subscribe((res:any) => {
+            this.user.skills = res.user.skills
+            this.user.interests = res.user.interests
+          })
+      },
+      (error) => {
+        Swal.fire(
+          {
+            icon: 'error',
+            title: error.error.message,
+            timer: 3000,
+            showConfirmButton: false,
+          })
+      }
+    )
+  }
+
+  deleteSkill(skill: string){
+    this.userService.deleteSkill(this.userId! ,skill).subscribe(
+      (data) => {
+        Swal.fire(
+          {
+            icon: 'success',
+            title: 'Experience deleted succesfully',
+            text: 'Deleted',
+            timer: 3000,
+            showConfirmButton: false,
+          })
+          this.userService.getUserData(this.userId!).subscribe((res:any) => {
+            this.user.skills = res.user.skills
+            this.user.interests = res.user.interests
+          })
+      },
+      (error) => {
+        Swal.fire(
+          {
+            icon: 'error',
+            title: error.error.message,
+            timer: 3000,
+            showConfirmButton: false,
+          })
+      }
+    )
+  }
+
+  deleteInterest(interest: string){
+    this.userService.deleteInterest(this.userId! ,interest).subscribe(
+      (data) => {
+        Swal.fire(
+          {
+            icon: 'success',
+            title: 'Experience deleted succesfully',
+            text: 'Deleted',
+            timer: 3000,
+            showConfirmButton: false,
+          })
+          this.userService.getUserData(this.userId!).subscribe((res:any) => {
+            this.user.skills = res.user.skills
+            this.user.interests = res.user.interests
           })
       },
       (error) => {

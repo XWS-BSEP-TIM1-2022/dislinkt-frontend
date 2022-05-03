@@ -64,4 +64,28 @@ export class UserService {
   deleteExperience(experienceId: string) {
     return this.http.delete(environment.serverUrl + 'users/experience/' + experienceId)
   }
+
+  addNewSkill(newSkill: string, userId: string){
+    var body = {
+      "userId" : userId,
+      "skill" : newSkill
+    }
+    return this.http.put(environment.serverUrl + 'users/newSkill', body)
+  }
+
+  addNewInterest(newInterest: string, userId: string){
+    var body = {
+      "userId" : userId,
+      "interest" : newInterest
+    }
+    return this.http.put(environment.serverUrl + 'users/newInterest', body)
+  }
+
+  deleteSkill(userId: string, skill: string){
+    return this.http.delete(environment.serverUrl + "users/removeSkill/" + userId + '/' + skill);
+  }
+
+  deleteInterest(userId: string, interest: string){
+    return this.http.delete(environment.serverUrl + "users/removeInterest/" + userId + '/' + interest);
+  }
 }

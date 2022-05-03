@@ -180,14 +180,50 @@
 </div>
 <div style="text-align: center; display: flex; flex-direction: column;">
     <h1 style="font-weight: bold; font-size: 2rem;">Skills:</h1>
-    <h2 style="margin-left: 1rem;" *ngFor="let skill of this.user.skills">
-        {{skill}}
-    </h2>
+    <div *ngFor="let skill of this.user.skills" style="display: flex; justify-content: center;">
+        <h2 style="margin-left: 1rem;">
+            {{skill}}
+        </h2>
+        <button class="cancelButton" (click)="deleteSkill(skill)">
+            X
+        </button>
+    </div>
+    <mat-card style="margin-top: 1rem; margin-left: 25%; margin-right: 25%; margin-bottom: 1rem;">
+        <div style="display: flex;">
+            <mat-form-field appearance="legacy" style="width: 100%;">
+                <mat-label>New skill:</mat-label>
+                <input matInput type="text" [(ngModel)]="newSkill" [formControl]="newSkillForm">
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="addNewSkill()"
+                                            [disabled]="
+                                            newSkillForm.invalid">
+                                            Add new
+            </button>
+        </div>
+    </mat-card>
 </div>
 <br>
 <div style="text-align: center; display: flex; flex-direction: column;">
     <h1 style="font-weight: bold; font-size: 2rem;">Interests:</h1>
-    <h2 style="margin-left: 1rem;" *ngFor="let interest of this.user.interests">
-        {{interest}}
-    </h2>
+    <span *ngFor="let interest of this.user.interests" style="display: flex; justify-content: center;">
+        <h2 style="margin-left: 1rem;">
+            {{interest}}
+        </h2>
+        <button class="cancelButton" (click)="deleteInterest(interest)">
+            X
+        </button>
+    </span>
+    <mat-card style="margin-top: 1rem; margin-left: 25%; margin-right: 25%; margin-bottom: 1rem;">
+        <div style="display: flex;">
+            <mat-form-field appearance="legacy" style="width: 100%;">
+                <mat-label>New interest:</mat-label>
+                <input matInput type="text" [(ngModel)]="newInterest" [formControl]="newInterestForm">
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="addNewInterest()"
+                                            [disabled]="
+                                            newInterestForm.invalid">
+                                            Add new
+            </button>
+        </div>
+    </mat-card>
 </div>
