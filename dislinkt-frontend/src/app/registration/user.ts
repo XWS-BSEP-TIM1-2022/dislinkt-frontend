@@ -11,6 +11,7 @@ export class User{
         public confirmPassword: string,
         public bio: string,
         public skills: [],
-        public interests: []
+        public interests: [],
+        public TFAEnabled:boolean
     ){}
 } 

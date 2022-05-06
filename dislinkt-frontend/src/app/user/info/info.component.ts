@@ -13,6 +13,15 @@ import { User } from '../../registration/user';
   styleUrls: ['./info.component.css']
 })
 export class InfoComponent implements OnInit {
+  qrCodeBitmap: any
+  showQrAndInput = false;
+  code = ""
+
+  codeForm = new FormControl('', [Validators.required, this.codeValidator()]);
+  codeValidator(): ValidatorFn {
+    return Validators.pattern('[0-9]{6}');
+  }
+
   maxDate: Date;
   genders: number[] = [0, 1];
   userId: string | null = "";
@@ -25,7 +34,7 @@ export class InfoComponent implements OnInit {
   newSkill: string = "";
   newInterest: string = "";
 
-  user = new User("", "", "", "", 0, "", "", "", "", "", [], [])
+  user = new User("", "", "", "", 0, "", "", "", "", "", [], [], false)
   experiences = [] as Experience[]
 
   nameForm = new FormControl('', [Validators.required]);
@@ -56,28 +65,29 @@ export class InfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (localStorage.getItem('userId') != null){
+    if (localStorage.getItem('userId') != null) {
       this.userId = localStorage.getItem('userId');
-      this.userService.getUserData(this.userId!).subscribe((res:any) => {
-      this.user.name = res.user.name
-      this.user.surname = res.user.surname
-      this.user.email = res.user.email
-      this.user.birthDate = res.user.birthDate.split(" ")[0];
-      this.user.phoneNumber = res.user.phoneNumber
-      this.user.username = res.user.username
-      this.user.gender =  Number(res.user.gender)
-      this.user.bio = res.user.bio
-      this.user.skills = res.user.skills
-      this.user.interests = res.user.interests
+      this.userService.getUserData(this.userId!).subscribe((res: any) => {
+        this.user.name = res.user.name
+        this.user.surname = res.user.surname
+        this.user.email = res.user.email
+        this.user.birthDate = res.user.birthDate.split(" ")[0];
+        this.user.phoneNumber = res.user.phoneNumber
+        this.user.username = res.user.username
+        this.user.gender = Number(res.user.gender)
+        this.user.bio = res.user.bio
+        this.user.skills = res.user.skills
+        this.user.interests = res.user.interests
+        this.user.TFAEnabled = res.user.TFAEnabled
 
-      this.newExperience.userId = this.userId!
-      
-      this.userService.getExperiences(this.userId!).subscribe((res:any) => {
-        this.experiences = res.experiences
+        this.newExperience.userId = this.userId!
+
+        this.userService.getExperiences(this.userId!).subscribe((res: any) => {
+          this.experiences = res.experiences
+        })
       })
-    })
-  }
-    
+    }
+
   }
 
   getnameErrorMessage() {
@@ -135,7 +145,7 @@ export class InfoComponent implements OnInit {
     )
   }
 
-  editPassword(){
+  editPassword() {
     this.userService.editPassword(this.newPassword, this.oldPassword, this.userId!).subscribe(
       (data) => {
         Swal.fire(
@@ -170,11 +180,11 @@ export class InfoComponent implements OnInit {
             timer: 3000,
             showConfirmButton: false,
           })
-          this.userService.getExperiences(this.userId!).subscribe((res:any) => {
-            this.experiences = res.experiences
-          })
-          this.newExperience = new Experience
-          this.newExperience.userId = this.userId!
+        this.userService.getExperiences(this.userId!).subscribe((res: any) => {
+          this.experiences = res.experiences
+        })
+        this.newExperience = new Experience
+        this.newExperience.userId = this.userId!
 
       },
       (error) => {
@@ -189,7 +199,7 @@ export class InfoComponent implements OnInit {
     )
   }
 
-  delete(experienceId: string){
+  delete(experienceId: string) {
     this.userService.deleteExperience(experienceId).subscribe(
       (data) => {
         Swal.fire(
@@ -200,9 +210,9 @@ export class InfoComponent implements OnInit {
             timer: 3000,
             showConfirmButton: false,
           })
-          this.userService.getExperiences(this.userId!).subscribe((res:any) => {
-            this.experiences = res.experiences
-          })
+        this.userService.getExperiences(this.userId!).subscribe((res: any) => {
+          this.experiences = res.experiences
+        })
       },
       (error) => {
         Swal.fire(
@@ -216,7 +226,7 @@ export class InfoComponent implements OnInit {
     )
   }
 
-  addNewSkill(){
+  addNewSkill() {
     this.userService.addNewSkill(this.newSkill, this.userId!).subscribe(
       (data) => {
         Swal.fire(
@@ -227,10 +237,10 @@ export class InfoComponent implements OnInit {
             timer: 3000,
             showConfirmButton: false,
           })
-          this.userService.getUserData(this.userId!).subscribe((res:any) => {
-            this.user.skills = res.user.skills
-            this.user.interests = res.user.interests
-          })
+        this.userService.getUserData(this.userId!).subscribe((res: any) => {
+          this.user.skills = res.user.skills
+          this.user.interests = res.user.interests
+        })
       },
       (error) => {
         Swal.fire(
@@ -244,7 +254,7 @@ export class InfoComponent implements OnInit {
     )
   }
 
-  addNewInterest(){
+  addNewInterest() {
     this.userService.addNewInterest(this.newInterest, this.userId!).subscribe(
       (data) => {
         Swal.fire(
@@ -255,10 +265,10 @@ export class InfoComponent implements OnInit {
             timer: 3000,
             showConfirmButton: false,
           })
-          this.userService.getUserData(this.userId!).subscribe((res:any) => {
-            this.user.skills = res.user.skills
-            this.user.interests = res.user.interests
-          })
+        this.userService.getUserData(this.userId!).subscribe((res: any) => {
+          this.user.skills = res.user.skills
+          this.user.interests = res.user.interests
+        })
       },
       (error) => {
         Swal.fire(
@@ -272,8 +282,8 @@ export class InfoComponent implements OnInit {
     )
   }
 
-  deleteSkill(skill: string){
-    this.userService.deleteSkill(this.userId! ,skill).subscribe(
+  deleteSkill(skill: string) {
+    this.userService.deleteSkill(this.userId!, skill).subscribe(
       (data) => {
         Swal.fire(
           {
@@ -283,10 +293,10 @@ export class InfoComponent implements OnInit {
             timer: 3000,
             showConfirmButton: false,
           })
-          this.userService.getUserData(this.userId!).subscribe((res:any) => {
-            this.user.skills = res.user.skills
-            this.user.interests = res.user.interests
-          })
+        this.userService.getUserData(this.userId!).subscribe((res: any) => {
+          this.user.skills = res.user.skills
+          this.user.interests = res.user.interests
+        })
       },
       (error) => {
         Swal.fire(
@@ -300,8 +310,8 @@ export class InfoComponent implements OnInit {
     )
   }
 
-  deleteInterest(interest: string){
-    this.userService.deleteInterest(this.userId! ,interest).subscribe(
+  deleteInterest(interest: string) {
+    this.userService.deleteInterest(this.userId!, interest).subscribe(
       (data) => {
         Swal.fire(
           {
@@ -311,10 +321,10 @@ export class InfoComponent implements OnInit {
             timer: 3000,
             showConfirmButton: false,
           })
-          this.userService.getUserData(this.userId!).subscribe((res:any) => {
-            this.user.skills = res.user.skills
-            this.user.interests = res.user.interests
-          })
+        this.userService.getUserData(this.userId!).subscribe((res: any) => {
+          this.user.skills = res.user.skills
+          this.user.interests = res.user.interests
+        })
       },
       (error) => {
         Swal.fire(
@@ -328,4 +338,54 @@ export class InfoComponent implements OnInit {
     )
   }
 
+  getQR2fa() {
+    this.authService.getQR2fa().subscribe(
+      (data: any) => {
+        this.qrCodeBitmap = data.qrCode
+        this.showQrAndInput = true
+      }
+    )
+  }
+
+  disable2fa() {
+    this.authService.disable2fa().subscribe(
+      (data: any) => {
+        this.user.TFAEnabled = false
+      },
+      (error) => {
+        Swal.fire(
+          {
+            icon: 'error',
+            title: error.error.message,
+            timer: 1000,
+            showConfirmButton: false,
+          })
+      }
+    )
+  }
+
+  verify() {
+    this.authService.enable2fa(this.code).subscribe(
+      (data) => {
+        this.user.TFAEnabled = true
+        Swal.fire(
+          {
+            icon: 'success',
+            title: "Successfully activated two-factor authentication",
+            timer: 1000,
+            showConfirmButton: false,
+          })
+      },
+      (error) => {
+        Swal.fire(
+          {
+            icon: 'error',
+            title: error.error.message,
+            timer: 1000,
+            showConfirmButton: false,
+          })
+
+      }
+    )
+  }
 }

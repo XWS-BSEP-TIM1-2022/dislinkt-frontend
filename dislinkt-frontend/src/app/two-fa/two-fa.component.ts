@@ -1,39 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AuthService } from '../service/auth.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-two-fa',
+  templateUrl: './two-fa.component.html',
+  styleUrls: ['./two-fa.component.css']
 })
-export class LoginComponent implements OnInit {
+export class TwoFAComponent implements OnInit {
 
-  username = ""
-  password = ""
-
-  usernameForm = new FormControl('', [Validators.required]);
-  passwordForm = new FormControl('', [Validators.required]);
+  code = ""
 
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    if (this.authService.getRole() != null) {
-      this.router.navigate(['/'])
-    }
   }
 
-  login(): void {
-    this.authService.login(this.username, this.password).subscribe(
+  verify() {
+    this.authService.verify2fa(this.code).subscribe(
       (data: any) => {
         localStorage.setItem('userId', data.userId)
-        if(data.token == ""){
-          this.router.navigate(['2fa'])
-          return
-        }
-        console.log(data)
         localStorage.setItem('token', data.token)
         localStorage.setItem('role', data.role)
         localStorage.setItem('email', data.email)
@@ -62,14 +49,5 @@ export class LoginComponent implements OnInit {
           })
       }
     )
-  }
-  getUsernameErrorMessage() {
-    return this.usernameForm.hasError('required') ? 'You must enter a value' :
-      '';
-  }
-
-  getPasswordErrorMessage() {
-    return this.passwordForm.hasError('required') ? 'You must enter a value' :
-      '';
   }
 }

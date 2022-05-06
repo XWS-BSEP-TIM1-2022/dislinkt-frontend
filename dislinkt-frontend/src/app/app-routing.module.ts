@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { TwoFAComponent } from './two-fa/two-fa.component';
 import { HomeComponent } from './user/home/home.component';
 import { InfoComponent } from './user/info/info.component';
 import { NewPostComponent } from './user/new-post/new-post.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'info', component: InfoComponent },
   { path: 'newPost', component: NewPostComponent },
   { path: 'requests', component: RequestsComponent },
+  { path: '2fa', component: TwoFAComponent },
 ];
 
 @NgModule({

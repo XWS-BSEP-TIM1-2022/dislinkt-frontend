@@ -20,6 +20,7 @@ import { InfoComponent } from './user/info/info.component';
 import { NewPostComponent } from './user/new-post/new-post.component';
 import { MaterialModule } from 'src/material.module';
 import { RequestsComponent } from './user/requests/requests.component';
+import { TwoFAComponent } from './two-fa/two-fa.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { RequestsComponent } from './user/requests/requests.component';
     SearchComponent,
     InfoComponent,
     NewPostComponent,
-    RequestsComponent
+    RequestsComponent,
+    TwoFAComponent
   ],
   imports: [
     BrowserModule,
