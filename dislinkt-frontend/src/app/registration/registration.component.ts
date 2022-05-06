@@ -1,5 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AuthService } from '../service/auth.service';
@@ -24,22 +25,37 @@ export class RegistrationComponent implements OnInit {
   surnameForm = new FormControl('', [Validators.required]);
   emailForm = new FormControl('', [Validators.required, Validators.email]);
   dateForm = new FormControl('', [Validators.required]);
-  phoneForm = new FormControl('', [this.phoneNumberValidator()]);
+  phoneForm = new FormControl('', [this.patternValidator('[- +()0-9]+', { phoneNumber: true })]);
   usernameForm = new FormControl('', [Validators.required]);
-  passwordForm = new FormControl('', [Validators.required]);
+  passwordForm = new FormControl('', [Validators.required, Validators.minLength(8), this.patternValidator('[0-9]', { hasNumber: true }), this.patternValidator('[A-Z]', { hasUpperCase: true }), this.patternValidator('[a-z]', { hasLowerCase: true }), this.patternValidator("[.,<>/?|';:!@#$%^&*()_+=-]", { hasSpecial: true }), this.commonPasswordsValidator()]);
   confirmPasswordForm = new FormControl('', [Validators.required, this.equalsToPasswordValidator()]);
+  commonPasswords = ['']
+  foundCommonPass: any;
 
+  commonPasswordsValidator(): ValidatorFn {
+    if (this.commonPasswords == undefined)
+      this.commonPasswords = ['']
+    return (control: AbstractControl): { [key: string]: any } | null =>
+      (!this.containts(control.value)) ? null : { commonPassword: true }
+
+  }
 
   equalsToPasswordValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null =>
-      control.value?.toLowerCase() == this.user.password ? null : { wrongColor: control.value };
+      control.value?.toLowerCase() == this.user.password.toLowerCase() ? null : { passwordsNotEqual: true };
   }
 
-  phoneNumberValidator(): ValidatorFn {
-    return Validators.pattern('[- +()0-9]+');
+  patternValidator(regex: string, error: ValidationErrors): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } => {
+      if (!control.value) {
+        return null as any;
+      }
+      const valid = RegExp(regex).test(control.value);
+      return valid ? null as any : error;
+    };
   }
 
-  constructor(private userService: UserService, private authService: AuthService, private router: Router) {
+  constructor(private userService: UserService, private authService: AuthService, private router: Router, private http: HttpClient) {
     this.maxDate = new Date()
   }
 
@@ -47,6 +63,11 @@ export class RegistrationComponent implements OnInit {
     if (this.authService.getRole() != null) {
       this.router.navigate(['/'])
     }
+    this.http.get('assets/common_passwords.txt', { responseType: 'text' }).subscribe(
+      (data) => {
+        this.commonPasswords = data.split(/[\r\n]+/)
+      }
+    )
   }
 
   register() {
@@ -111,11 +132,26 @@ export class RegistrationComponent implements OnInit {
 
   getPasswordErrorMessage() {
     return this.passwordForm.hasError('required') ? 'You must enter a value' :
-      '';
+      this.passwordForm.hasError('minlength') ? 'Must be atleast 8 characters' :
+        this.passwordForm.hasError('hasNumber') ? 'Must contain atleast 1 number' :
+          this.passwordForm.hasError('hasUpperCase') ? 'Must contain 1 upper case' :
+            this.passwordForm.hasError('hasLowerCase') ? 'Must contain 1 lower case' :
+              this.passwordForm.hasError('hasSpecial') ? 'Must contain 1 special characher' :
+                this.passwordForm.hasError('commonPassword') ? 'Must not be a common password or containts common. (' + this.foundCommonPass + ')' :
+                  '';
   }
 
   getConfirmPasswordErrorMessage() {
     return this.confirmPasswordForm.hasError('required') ? 'You must enter a value' :
       'Passwords must match';
+  }
+  containts(value: any) {
+    for (const pass of this.commonPasswords) {
+      if (pass.includes(value) || value.includes(pass)) {
+        this.foundCommonPass = pass
+        return true
+      }
+    }
+    return false
   }
 }
