@@ -26,10 +26,11 @@ export class UserService {
     return this.http.get(environment.serverUrl + 'users/search?searchParam=' + searchParam)
   }
 
-  editPassword(newPassword: any, oldPassword: any, id: any) {
+  editPassword(newPassword: any, confirmNewPassword: any, oldPassword: any, id: any) {
     var body = {
       "userId": id,
       "password": newPassword,
+      "confirmNewPassword": confirmNewPassword,
       "oldPassword": oldPassword
     }
     return this.http.put(environment.serverUrl + 'users', body)

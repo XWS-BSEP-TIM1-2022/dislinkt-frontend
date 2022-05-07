@@ -148,6 +148,15 @@
                             </mat-form-field>
 
                             <mat-form-field appearance="legacy" style="width: 100%;">
+                                <mat-label>Confirm password</mat-label>
+                                <input type="password" matInput placeholder="confirmPassword"
+                                    [(ngModel)]="user.confirmPassword" [formControl]="confirmPasswordForm" required>
+
+                                <mat-error *ngIf="confirmPasswordForm.invalid">{{getConfirmPasswordErrorMessage()}}
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="legacy" style="width: 100%;">
                                 <mat-label>Old password</mat-label>
                                 <input type="password" matInput placeholder="surname" [(ngModel)]="oldPassword"
                                     [formControl]="oldPasswordForm" required>
@@ -157,7 +166,7 @@
 
                             <div style="text-align: center;">
                                 <button mat-raised-button color="primary" (click)="editPassword()"
-                                    [disabled]="newPasswordForm.invalid || oldPasswordForm.invalid">
+                                    [disabled]="newPasswordForm.invalid || oldPasswordForm.invalid || confirmPasswordForm.invalid">
                                     Change password
                                 </button>
                             </div>

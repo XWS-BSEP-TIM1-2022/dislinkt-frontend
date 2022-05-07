@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Experience } from 'src/app/model/experience.model';
 import { AuthService } from 'src/app/service/auth.service';
@@ -27,6 +27,7 @@ export class InfoComponent implements OnInit {
   userId: string | null = "";
 
   newPassword: string = ""
+  confirmNewPassword: string = ""
   oldPassword: string = ""
 
   newExperience: Experience = new Experience;
@@ -45,6 +46,7 @@ export class InfoComponent implements OnInit {
   usernameForm = new FormControl('', [Validators.required]);
 
   newPasswordForm = new FormControl('', [Validators.required])
+  confirmPasswordForm = new FormControl('', [Validators.required, this.equalsToPasswordValidator()]);
   oldPasswordForm = new FormControl('', [Validators.required])
 
   experiencePlace = new FormControl('', [Validators.required])
@@ -58,6 +60,11 @@ export class InfoComponent implements OnInit {
 
   phoneNumberValidator(): ValidatorFn {
     return Validators.pattern('[- +()0-9]+');
+  }
+
+  equalsToPasswordValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null =>
+      control.value?.toLowerCase() == this.newPassword.toLowerCase() ? null : { passwordsNotEqual: true };
   }
 
   constructor(private userService: UserService, private authService: AuthService, private router: Router) {
@@ -120,6 +127,10 @@ export class InfoComponent implements OnInit {
     return this.usernameForm.hasError('required') ? 'You must enter a value' :
       '';
   }
+  getConfirmPasswordErrorMessage() {
+    return this.confirmPasswordForm.hasError('required') ? 'You must enter a value' :
+      'Passwords must match';
+  }
 
   edit() {
     this.userService.edit(this.user, this.userId!).subscribe(
@@ -146,7 +157,7 @@ export class InfoComponent implements OnInit {
   }
 
   editPassword() {
-    this.userService.editPassword(this.newPassword, this.oldPassword, this.userId!).subscribe(
+    this.userService.editPassword(this.newPassword, this.confirmNewPassword, this.oldPassword, this.userId!).subscribe(
       (data) => {
         Swal.fire(
           {
