@@ -15,11 +15,7 @@ export class UserService {
   }
 
   edit(user: User, id: string) {
-    var header = {
-      headers: new HttpHeaders()
-        .set('Authorization', `${localStorage.getItem('token')}`)
-    }
-    return this.http.put(environment.serverUrl + 'users/' + id, user, header)
+    return this.http.put(environment.serverUrl + 'users/' + id, user)
   }
 
   getUserData(userId: string) {
@@ -27,30 +23,16 @@ export class UserService {
   }
 
   searchUser(searchParam: string) {
-    var header = {
-      headers: new HttpHeaders()
-    }
-    var userId = localStorage.getItem('userId')
-    if (userId != null) {
-      header = {
-        headers: new HttpHeaders()
-          .set('Authorization', `${localStorage.getItem('token')}`)
-      }
-    }
-    return this.http.get(environment.serverUrl + 'users/search?searchParam=' + searchParam, header)
+    return this.http.get(environment.serverUrl + 'users/search?searchParam=' + searchParam)
   }
 
   editPassword(newPassword: any, oldPassword: any, id: any) {
-    var header = {
-      headers: new HttpHeaders()
-        .set('Authorization', `${localStorage.getItem('token')}`)
-    }
     var body = {
       "userId": id,
       "password": newPassword,
       "oldPassword": oldPassword
     }
-    return this.http.put(environment.serverUrl + 'users', body, header)
+    return this.http.put(environment.serverUrl + 'users', body)
   }
 
   getExperiences(userId: string) {

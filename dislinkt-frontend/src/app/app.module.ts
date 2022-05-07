@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -21,6 +21,7 @@ import { NewPostComponent } from './user/new-post/new-post.component';
 import { MaterialModule } from 'src/material.module';
 import { RequestsComponent } from './user/requests/requests.component';
 import { TwoFAComponent } from './two-fa/two-fa.component';
+import { CustomInterceptor } from './service/interceptor';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,9 @@ import { TwoFAComponent } from './two-fa/two-fa.component';
     ReactiveFormsModule,
     MaterialModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: CustomInterceptor, multi:true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -31,20 +31,12 @@ export class AuthService {
   }
 
   getQR2fa() {
-    var header = {
-      headers: new HttpHeaders()
-        .set('Authorization', `${localStorage.getItem('token')}`)
-    }
-    return this.http.put(environment.serverUrl + 'auth/getQR2fa/' + localStorage.getItem("userId"), null, header);
+    return this.http.put(environment.serverUrl + 'auth/getQR2fa/' + localStorage.getItem("userId"), null);
   }
 
 
   enable2fa(code: string) {
-    var header = {
-      headers: new HttpHeaders()
-        .set('Authorization', `${localStorage.getItem('token')}`)
-    }
-    return this.http.put(environment.serverUrl + 'auth/enable2fa', { userId: localStorage.getItem("userId"), code: code }, header);
+    return this.http.put(environment.serverUrl + 'auth/enable2fa', { userId: localStorage.getItem("userId"), code: code });
   }
 
   verify2fa(code: string) {
@@ -52,11 +44,7 @@ export class AuthService {
   }
 
   disable2fa() {
-    var header = {
-      headers: new HttpHeaders()
-        .set('Authorization', `${localStorage.getItem('token')}`)
-    }
-    return this.http.put(environment.serverUrl + 'auth/disable2fa/' + localStorage.getItem("userId"), null, header);
+    return this.http.put(environment.serverUrl + 'auth/disable2fa/' + localStorage.getItem("userId"), null);
   }
 
 }

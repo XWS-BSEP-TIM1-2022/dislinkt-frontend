@@ -343,6 +343,15 @@ export class InfoComponent implements OnInit {
       (data: any) => {
         this.qrCodeBitmap = data.qrCode
         this.showQrAndInput = true
+      },
+      (error) => {
+        Swal.fire(
+          {
+            icon: 'error',
+            title: error.error.message,
+            timer: 1000,
+            showConfirmButton: false,
+          })
       }
     )
   }
