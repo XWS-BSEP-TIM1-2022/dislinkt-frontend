@@ -35,6 +35,9 @@
                                 <a (click)="deleteConnection(user)"><mat-icon color = "warn" class="is-size-1" *ngIf="user.isConnected">close</mat-icon></a>
                                 <a (click)="rejectConnection(user)"><mat-icon class="is-size-1" *ngIf="!user.isConnected && user.pendingConnection">sync_disabled</mat-icon></a>
                             </div>
+                            <div class="column is-2">
+                            <a (click)="openProfile(user)"><mat-icon color = "accent" class="is-size-1">account_circle</mat-icon></a>
+                        </div>
                         </div>
 
                     </mat-card-title>

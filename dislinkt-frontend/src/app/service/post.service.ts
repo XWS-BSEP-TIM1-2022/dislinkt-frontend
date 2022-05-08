@@ -12,4 +12,8 @@ export class PostService {
   createPost(post: Post) {
     return this.http.post(environment.serverUrl + 'posts', post)
   }
+
+  getAllUserPosts(userId: string){
+    return this.http.get<Array<Post>>(environment.serverUrl + 'users/'+ userId +'/posts')
+  }
 }

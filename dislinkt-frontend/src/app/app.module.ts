@@ -22,6 +22,7 @@ import { MaterialModule } from 'src/material.module';
 import { RequestsComponent } from './user/requests/requests.component';
 import { TwoFAComponent } from './two-fa/two-fa.component';
 import { CustomInterceptor } from './service/interceptor';
+import { ProfileComponent } from './user/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { CustomInterceptor } from './service/interceptor';
     InfoComponent,
     NewPostComponent,
     RequestsComponent,
-    TwoFAComponent
+    TwoFAComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

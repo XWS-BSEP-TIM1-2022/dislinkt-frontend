@@ -1,0 +1,62 @@
+<section class="hero is-medium">
+    <div class="hero-body">
+        <div class="container">
+            <div class="column is-10 is-offset-1">
+                <mat-card style="margin-bottom: 15px;">
+                    <mat-card-title class="has-text-centered">
+                        <div class="columns">
+                            <div class="column">
+                                {{user.name}} {{user.surname}}
+                            </div>
+                        </div>
+
+                    </mat-card-title>
+                    <mat-card-content>
+                        <div class="columns">
+                            <div class="column is-half">
+                                <p>Username: {{user.username}}</p>
+                                <br>
+                                <p>Birth date: {{user.birthDate| date:"dd.MM.yyyy"}}</p>
+                                <br>
+                                <p>Email: {{user.email}}</p>
+
+                            </div>
+                            <div class="column is-half">
+                                <p class="cut-text1">Bio: {{user.bio}} </p>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+
+                <mat-card *ngFor="let post of posts" style="margin-bottom: 15px; background-color: '#48C78E';" >
+                    <mat-card-title>
+                        <div class="columns">
+                            <div class="column">
+                                {{user.name}} {{user.surname}}
+                            </div>
+                        </div>
+
+                    </mat-card-title>
+                    <mat-card-content>
+                        <div class="columns">
+                            <div class="column is-half">
+                                <div *ngIf="post.text !== ''">
+                                <p>{{post.text}}</p>
+                                </div>
+                                <br>
+                                <div *ngIf="post.image !== ''">
+                                    <p><img src="{{post.image}}" /></p>
+                                </div>
+                                <br>
+                                <div *ngIf="post.links !== []">
+                                    <a *ngFor="let link of post.links">{{link}}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { User } from 'src/app/registration/user';
 import { AuthService } from 'src/app/service/auth.service';
 import { ConnectionService } from 'src/app/service/connection.service';
 import { UserService } from 'src/app/service/user.service';
@@ -16,7 +17,7 @@ export class SearchComponent implements OnInit {
   searchParam: any
   connections: any
 
-  constructor(private userService: UserService, private authService: AuthService, private connectionService: ConnectionService, private activatedRoute: ActivatedRoute,) { }
+  constructor(private userService: UserService, private authService: AuthService, private connectionService: ConnectionService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     /*this.activatedRoute.queryParams.subscribe(params => {
@@ -153,6 +154,10 @@ export class SearchComponent implements OnInit {
       }
 
     )
+  }
+
+  openProfile(user: any){
+    this.router.navigate(['posts/'+user.id]);
   }
 
 }
