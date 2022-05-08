@@ -54,6 +54,29 @@
                             </div>
                         </div>
                     </mat-card-content>
+                    <mat-card-footer>
+                        <div class="columns">
+                            <div class="column is-1"></div>
+                            <div class="column is-3">
+                        <a (click)="likePost(post.id)"><mat-icon color="accent" class="is-size-1">thumb_up</mat-icon></a>
+                            </div>
+                            <div class="column is-4">
+                        <a (click)="dislikePost(post.id)"><mat-icon color="accent"  class="is-size-1">thumb_down</mat-icon></a>
+                            </div>
+                            <div class="column is-4">
+                        <a (click)="commentPost(post.id)"><mat-icon color="accent" class="is-size-1">chat_bubble</mat-icon></a>
+                            </div>
+                            </div>
+                            <div class="columns" *ngIf="post.id===postInputActive">
+                                <div class="column is-1" ></div>
+                                <div class="column is-8" >
+                            <input class="input" type="text" matInput placeholder="text"
+                                    [formControl]="textForm" required>
+                                </div>
+                                <div class="column is-1" ></div>
+                            <a (click)="createCommentPost(post.id)"><mat-icon color="accent" class="is-size-1">check_circle</mat-icon></a>
+                            </div>
+                        </mat-card-footer>
                 </mat-card>
 
             </div>
