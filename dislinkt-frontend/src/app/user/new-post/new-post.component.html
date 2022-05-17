@@ -34,15 +34,22 @@
                                 <mat-error *ngIf="textForm.invalid">{{getTextErrorMessage()}}</mat-error>
                             </mat-form-field>
 
-                            <!--
-                            <mat-form-field appearance="legacy" style="width: 100%;">
-                                <mat-label>Email</mat-label>
-                                <input type="text" matInput placeholder="email" [(ngModel)]="user.email"
-                                    [formControl]="emailForm" required>
+                            <hr>
+                            <p *ngIf="post.links.length > 0">Links:</p>
 
-                                <mat-error *ngIf="emailForm.invalid">{{getEmailErrorMessage()}}</mat-error>
+                            <mat-nav-list>
+                                <p mat-list-item *ngFor="let link of post.links; let i = index" [attr.data-index]="i">
+                                    {{i + 1}}) {{ link }}
+                                </p>
+                            </mat-nav-list>
+
+                            <mat-form-field appearance="legacy" style="width: 100%;">
+                                <mat-label>Add link</mat-label>
+                                <input type="text" matInput placeholder="new link" [(ngModel)]="newLink">
+                                <button mat-raised-button matSuffix color="accent" (click)="addLink()">Add</button>
                             </mat-form-field>
-                            -->
+
+                            <hr>
 
                             <div style="text-align: center;">
                                 <button mat-raised-button color="primary" (click)="createPost()"

@@ -14,6 +14,7 @@ export class NewPostComponent implements OnInit {
   textForm = new FormControl('', [Validators.required]);
   imageName: string = '';
   post = new Post();
+  newLink: string = '';
 
   constructor(private postService: PostService) { }
 
@@ -54,6 +55,13 @@ export class NewPostComponent implements OnInit {
           })
       }
     );
+  }
+
+  addLink() {
+    if(this.newLink == '')  return;
+
+    this.post.links.push(this.newLink);
+    this.newLink = '';
   }
 
   readUploadedFileAsBytes(inputFile: any) {

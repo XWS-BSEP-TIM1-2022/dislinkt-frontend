@@ -49,7 +49,9 @@
                                 </div>
                                 <br>
                                 <div *ngIf="post.links !== []">
-                                    <a *ngFor="let link of post.links">{{link}}</a>
+                                    <div *ngFor="let link of post.links; let i = index" [attr.data-index]="i">
+                                        {{i + 1}}) <a>{{link}}</a>
+                                    </div>                                    
                                 </div>
                             </div>
                         </div>
