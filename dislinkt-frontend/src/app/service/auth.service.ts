@@ -47,4 +47,16 @@ export class AuthService {
     return this.http.put(environment.serverUrl + 'auth/disable2fa/' + localStorage.getItem("userId"), null);
   }
 
+  getApiToken() {
+    return this.http.get(environment.serverUrl + 'users/api-token/' + localStorage.getItem("userId"));
+  }
+
+  createApiToken() {
+    return this.http.get(environment.serverUrl + 'users/api-token/new/' + localStorage.getItem("userId"));
+  }
+
+  removeApiToken() {
+    return this.http.delete(environment.serverUrl + 'users/api-token/' + localStorage.getItem("userId"));
+  }
+
 }

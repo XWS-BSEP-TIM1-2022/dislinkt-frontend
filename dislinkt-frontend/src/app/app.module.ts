@@ -23,6 +23,8 @@ import { RequestsComponent } from './user/requests/requests.component';
 import { TwoFAComponent } from './two-fa/two-fa.component';
 import { CustomInterceptor } from './service/interceptor';
 import { ProfileComponent } from './user/profile/profile.component';
+import { ApiTokenComponent } from './user/api-token/api-token.component';
+import { ClipboardModule } from 'ngx-clipboard';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { ProfileComponent } from './user/profile/profile.component';
     NewPostComponent,
     RequestsComponent,
     TwoFAComponent,
-    ProfileComponent
+    ProfileComponent,
+    ApiTokenComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,8 @@ import { ProfileComponent } from './user/profile/profile.component';
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    ClipboardModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: CustomInterceptor, multi:true}

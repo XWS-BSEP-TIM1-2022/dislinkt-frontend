@@ -55,6 +55,11 @@
                         </a>
                     </span>
                     <span *ngIf="this.authService.getRole() === 'USER'">
+                        <a class="button is-link" style="margin-right: 1rem;" [routerLink]="['/api-token']">
+                            Api token
+                        </a>
+                    </span>
+                    <span *ngIf="this.authService.getRole() === 'USER'">
                         <a class="button is-success" style="margin-right: 1rem;" [routerLink]="['/info']">
                             Profile info
                         </a>

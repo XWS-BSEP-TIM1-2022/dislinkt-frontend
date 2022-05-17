@@ -17,7 +17,7 @@ export class SearchComponent implements OnInit {
   searchParam: any
   connections: any
 
-  constructor(private userService: UserService, private authService: AuthService, private connectionService: ConnectionService, private activatedRoute: ActivatedRoute, private router: Router) { }
+  constructor(private userService: UserService, public authService: AuthService, private connectionService: ConnectionService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     /*this.activatedRoute.queryParams.subscribe(params => {

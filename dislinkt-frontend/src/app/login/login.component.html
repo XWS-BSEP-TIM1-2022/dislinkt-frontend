@@ -10,6 +10,7 @@
                         <br>
                         <mat-card-content style="margin-left: 1%; margin-right: 1%;">
                             <br>
+                            <form (submit)="login()" action="#">
                             <p>
                                 <mat-form-field appearance="legacy" style="width: 100%;">
                                     <mat-label>Username or email</mat-label>
@@ -29,7 +30,7 @@
                             </p>
                             <br>
                             <div style="text-align: center;">
-                                <button mat-raised-button color="primary" (click)="login()"
+                                <button mat-raised-button color="primary" type="submit"
                                     [disabled]="usernameForm.invalid || passwordForm.invalid">
                                     Log In
                                 </button>
@@ -37,7 +38,7 @@
                                 <br>
                                 <mat-label style="text-align: center;">Don't have an account? <a
                                         [routerLink]="['/registration']"> Register</a> </mat-label>
-                            </div>
+                            </div></form>
                         </mat-card-content>
                         <br>
                     </div>

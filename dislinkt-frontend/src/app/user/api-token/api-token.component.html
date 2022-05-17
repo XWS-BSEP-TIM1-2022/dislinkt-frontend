@@ -1,0 +1,53 @@
+<section class="hero is-medium">
+    <div class="hero-body">
+        <div class="container ">
+            <div class="column is-8 is-offset-2">
+
+                <mat-card class="example-card">
+                    <div style="margin-left: 15%; margin-right: 15%;">
+                        <br>
+                        <mat-card-content style="margin-left: 1%; margin-right: 1%;">
+                            <br>
+
+                            <div class="columns" *ngIf="apiToken != ''">
+                                <div class="column">
+                                    <mat-form-field appearance="legacy" style="width: 100%;">
+                                        <mat-label>Your API TOKEN is</mat-label>
+                                        <input type="text" matInput placeholder="text" [(ngModel)]="apiToken" disabled
+                                            required>
+                                    </mat-form-field>
+                                </div>
+                                <div class="column is-2">
+                                    <a (click)="copy()">
+                                        <mat-icon class="is-size-1" color="accent">file_copy</mat-icon>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="columns"  *ngIf="apiToken != ''">
+                                <div class="column">
+                                    <a (click)="delete()">
+                                        <mat-icon class="is-size-1" color="warn">clear</mat-icon>
+                                    </a>
+                                </div>
+                                <div class="column">
+                                    <a (click)="create()">
+                                        <mat-icon class="is-size-1">autorenew</mat-icon><br>
+                                        <mat-label>Generate new token</mat-label>
+                                    </a>
+                                </div>
+                            </div>
+                            <a (click)="create()" *ngIf="apiToken == ''">
+                                <mat-icon class="is-size-1">add</mat-icon><br>
+                                <mat-label>Generate new token</mat-label>
+                            </a>
+
+                        </mat-card-content>
+
+
+                        <br>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</section>

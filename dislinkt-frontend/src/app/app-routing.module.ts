@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ApiTokenComponent } from './user/api-token/api-token.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { TwoFAComponent } from './two-fa/two-fa.component';
@@ -20,7 +21,8 @@ const routes: Routes = [
   { path: 'newPost', component: NewPostComponent },
   { path: 'requests', component: RequestsComponent },
   { path: '2fa', component: TwoFAComponent },
-  { path: 'posts/:id', component: ProfileComponent}
+  { path: 'posts/:id', component: ProfileComponent},
+  { path: 'api-token', component: ApiTokenComponent},
 ];
 
 @NgModule({
