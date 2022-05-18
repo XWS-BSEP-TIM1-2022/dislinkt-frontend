@@ -25,6 +25,8 @@ import { CustomInterceptor } from './service/interceptor';
 import { ProfileComponent } from './user/profile/profile.component';
 import { ApiTokenComponent } from './user/api-token/api-token.component';
 import { ClipboardModule } from 'ngx-clipboard';
+import { PasswordRecoveryComponent } from './password-recovery/password-recovery/password-recovery.component';
+import { CreateNewPasswordComponent } from './password-recovery/create-new-password/create-new-password.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { ClipboardModule } from 'ngx-clipboard';
     RequestsComponent,
     TwoFAComponent,
     ProfileComponent,
-    ApiTokenComponent
+    ApiTokenComponent,
+    PasswordRecoveryComponent,
+    CreateNewPasswordComponent
   ],
   imports: [
     BrowserModule,

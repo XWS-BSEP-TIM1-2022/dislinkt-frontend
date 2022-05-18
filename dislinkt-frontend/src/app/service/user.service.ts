@@ -71,4 +71,16 @@ export class UserService {
   deleteInterest(userId: string, interest: string){
     return this.http.delete(environment.serverUrl + "users/removeInterest/" + userId + '/' + interest);
   }
+
+  requestForPasswordRecovery(username: string) {
+    return this.http.get(environment.serverUrl + 'users/auth/password-recovery/' + username);
+  }
+
+  recoverPassword(newPassword: string, confirmedNewPassword: string, passwordRecoveryRequestId: string) {
+    var body = {
+      "newPassword": newPassword,
+      "confirmPassword": confirmedNewPassword
+    }
+    return this.http.put(environment.serverUrl + 'users/password-recovery/' + passwordRecoveryRequestId, body)
+  }
 }

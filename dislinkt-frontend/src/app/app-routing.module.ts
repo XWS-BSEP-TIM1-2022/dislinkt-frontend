@@ -10,6 +10,8 @@ import { NewPostComponent } from './user/new-post/new-post.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { RequestsComponent } from './user/requests/requests.component';
 import { SearchComponent } from './user/search/search.component';
+import { PasswordRecoveryComponent } from './password-recovery/password-recovery/password-recovery.component';
+import { CreateNewPasswordComponent } from './password-recovery/create-new-password/create-new-password.component';
 
 const routes: Routes = [
 
@@ -23,6 +25,8 @@ const routes: Routes = [
   { path: '2fa', component: TwoFAComponent },
   { path: 'posts/:id', component: ProfileComponent},
   { path: 'api-token', component: ApiTokenComponent},
+  { path: 'password-recovery', component: PasswordRecoveryComponent},
+  { path: 'create-new-password/:id', component: CreateNewPasswordComponent}
 ];
 
 @NgModule({
