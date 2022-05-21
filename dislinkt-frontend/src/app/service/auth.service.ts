@@ -59,4 +59,8 @@ export class AuthService {
     return this.http.delete(environment.serverUrl + 'users/api-token/' + localStorage.getItem("userId"));
   }
 
+  sendLinkForLogin(username: string){
+    return this.http.get(environment.serverUrl + 'passwordless/' + username);
+  }
+
 }

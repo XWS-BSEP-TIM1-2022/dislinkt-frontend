@@ -12,6 +12,7 @@ import { RequestsComponent } from './user/requests/requests.component';
 import { SearchComponent } from './user/search/search.component';
 import { PasswordRecoveryComponent } from './password-recovery/password-recovery/password-recovery.component';
 import { CreateNewPasswordComponent } from './password-recovery/create-new-password/create-new-password.component';
+import { PasswordlessLoginComponent } from './passwordless-login/passwordless-login.component';
 
 const routes: Routes = [
 
@@ -23,10 +24,11 @@ const routes: Routes = [
   { path: 'newPost', component: NewPostComponent },
   { path: 'requests', component: RequestsComponent },
   { path: '2fa', component: TwoFAComponent },
-  { path: 'posts/:id', component: ProfileComponent},
-  { path: 'api-token', component: ApiTokenComponent},
-  { path: 'password-recovery', component: PasswordRecoveryComponent},
-  { path: 'create-new-password/:id', component: CreateNewPasswordComponent}
+  { path: 'posts/:id', component: ProfileComponent },
+  { path: 'api-token', component: ApiTokenComponent },
+  { path: 'password-recovery', component: PasswordRecoveryComponent },
+  { path: 'create-new-password/:id', component: CreateNewPasswordComponent },
+  { path: 'passwordless-login', component: PasswordlessLoginComponent }
 ];
 
 @NgModule({
