@@ -13,6 +13,9 @@ import { SearchComponent } from './user/search/search.component';
 import { PasswordRecoveryComponent } from './password-recovery/password-recovery/password-recovery.component';
 import { CreateNewPasswordComponent } from './password-recovery/create-new-password/create-new-password.component';
 import { PasswordlessLoginComponent } from './passwordless-login/passwordless-login.component';
+import { LoggedInGuardService } from './service/logged-in-guard.service';
+import { PageForAdminComponent } from './admin/page-for-admin/page-for-admin.component';
+import { AdminGuardService } from './service/admin-guard.service';
 
 const routes: Routes = [
 
@@ -21,14 +24,15 @@ const routes: Routes = [
   { path: 'registration', component: RegistrationComponent },
   { path: 'search', component: SearchComponent },
   { path: 'info', component: InfoComponent },
-  { path: 'newPost', component: NewPostComponent },
-  { path: 'requests', component: RequestsComponent },
+  { path: 'newPost', component: NewPostComponent, canActivate: [LoggedInGuardService] },
+  { path: 'requests', component: RequestsComponent, canActivate: [LoggedInGuardService] },
   { path: '2fa', component: TwoFAComponent },
   { path: 'posts/:id', component: ProfileComponent },
-  { path: 'api-token', component: ApiTokenComponent },
+  { path: 'api-token', component: ApiTokenComponent, canActivate: [LoggedInGuardService] },
   { path: 'password-recovery', component: PasswordRecoveryComponent },
   { path: 'create-new-password/:id', component: CreateNewPasswordComponent },
-  { path: 'passwordless-login', component: PasswordlessLoginComponent }
+  { path: 'passwordless-login', component: PasswordlessLoginComponent },
+  { path: 'page-for-admin', component: PageForAdminComponent, canActivate: [AdminGuardService]}
 ];
 
 @NgModule({
