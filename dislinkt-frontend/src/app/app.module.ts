@@ -28,6 +28,7 @@ import { ClipboardModule } from 'ngx-clipboard';
 import { PasswordRecoveryComponent } from './password-recovery/password-recovery/password-recovery.component';
 import { CreateNewPasswordComponent } from './password-recovery/create-new-password/create-new-password.component';
 import { PasswordlessLoginComponent } from './passwordless-login/passwordless-login.component';
+import { MagicLinkComponent } from './passwordless-login/magic-link/magic-link.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { PasswordlessLoginComponent } from './passwordless-login/passwordless-lo
     ApiTokenComponent,
     PasswordRecoveryComponent,
     CreateNewPasswordComponent,
-    PasswordlessLoginComponent
+    PasswordlessLoginComponent,
+    MagicLinkComponent
   ],
   imports: [
     BrowserModule,

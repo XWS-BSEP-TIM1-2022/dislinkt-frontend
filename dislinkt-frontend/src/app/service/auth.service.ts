@@ -63,4 +63,8 @@ export class AuthService {
     return this.http.get(environment.serverUrl + 'passwordless/' + username);
   }
 
+  activateLinkForLogin(userId: string, requestId: string){
+    return this.http.get(environment.serverUrl + 'login/' + userId+'/'+requestId);
+  }
+
 }

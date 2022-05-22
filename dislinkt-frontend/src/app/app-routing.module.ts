@@ -16,6 +16,7 @@ import { PasswordlessLoginComponent } from './passwordless-login/passwordless-lo
 import { LoggedInGuardService } from './service/logged-in-guard.service';
 import { PageForAdminComponent } from './admin/page-for-admin/page-for-admin.component';
 import { AdminGuardService } from './service/admin-guard.service';
+import { MagicLinkComponent } from './passwordless-login/magic-link/magic-link.component';
 
 const routes: Routes = [
 
@@ -32,7 +33,8 @@ const routes: Routes = [
   { path: 'password-recovery', component: PasswordRecoveryComponent },
   { path: 'create-new-password/:id', component: CreateNewPasswordComponent },
   { path: 'passwordless-login', component: PasswordlessLoginComponent },
-  { path: 'page-for-admin', component: PageForAdminComponent, canActivate: [AdminGuardService]}
+  { path: 'page-for-admin', component: PageForAdminComponent, canActivate: [AdminGuardService]},
+  { path: 'login/:userId/:requestId', component: MagicLinkComponent },
 ];
 
 @NgModule({
