@@ -14,7 +14,7 @@ export class PasswordlessLoginComponent implements OnInit {
 
   username = ""
 
-  usernameForm = new FormControl('', [Validators.required]);
+  usernameForm = new FormControl('', [Validators.required, Validators.pattern(/^\w+$/i)]);
 
   constructor(private authService: AuthService, private router: Router) { }
 

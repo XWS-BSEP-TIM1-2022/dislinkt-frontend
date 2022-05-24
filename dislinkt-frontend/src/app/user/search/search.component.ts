@@ -14,8 +14,9 @@ import Swal from 'sweetalert2';
 export class SearchComponent implements OnInit {
 
   users: any
-  searchParam: any
+  searchParam: string | null | undefined
   connections: any
+
 
   constructor(private userService: UserService, public authService: AuthService, private connectionService: ConnectionService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
@@ -51,18 +52,31 @@ export class SearchComponent implements OnInit {
   }
 
   search() {
-    localStorage.setItem('searchParam', this.searchParam)
-    this.userService.searchUser(this.searchParam).subscribe(
-      (data: any) => {
-        this.users = data.users
+    if (this.searchParam != null) {
+      localStorage.setItem('searchParam', this.searchParam)
+      if (this.searchParam.length > 100) {
+        Swal.fire(
+          {
+            icon: 'warning',
+            title: "Search parameter is too long",
+            timer: 1000,
+            showConfirmButton: false,
+          })
+        return;
+      }
+      this.userService.searchUser(this.searchParam!).subscribe(
+        (data: any) => {
+          this.users = data.users
 
-        if (this.authService.getRole() == "USER") {
-          this.getConnections()
-        }
-      },
-      (error) => {
-        this.users = []
-      })
+          if (this.authService.getRole() == "USER") {
+            this.getConnections()
+          }
+        },
+        (error) => {
+          this.users = []
+        })
+
+    }
   }
 
   newConnection(user: any) {
@@ -156,8 +170,8 @@ export class SearchComponent implements OnInit {
     )
   }
 
-  openProfile(user: any){
-    this.router.navigate(['posts/'+user.id]);
+  openProfile(user: any) {
+    this.router.navigate(['posts/' + user.id]);
   }
 
 }

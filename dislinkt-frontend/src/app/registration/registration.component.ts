@@ -21,12 +21,12 @@ export class RegistrationComponent implements OnInit {
 
   user = new User("", "", "", "", 0, "", "", "", "", "", [], [], false)
 
-  nameForm = new FormControl('', [Validators.required]);
-  surnameForm = new FormControl('', [Validators.required]);
+  nameForm = new FormControl('', [Validators.required, Validators.maxLength(30), Validators.pattern(/^[a-z0-9]+$/i)]);
+  surnameForm = new FormControl('', [Validators.required, Validators.maxLength(30), Validators.pattern(/^[a-z0-9]+$/i)]);
   emailForm = new FormControl('', [Validators.required, Validators.email]);
   dateForm = new FormControl('', [Validators.required]);
   phoneForm = new FormControl('', [this.patternValidator('[- +()0-9]+', { phoneNumber: true })]);
-  usernameForm = new FormControl('', [Validators.required]);
+  usernameForm = new FormControl('', [Validators.required, Validators.maxLength(30), Validators.pattern(/^\w+$/i)]);
   passwordForm = new FormControl('', [Validators.required, Validators.minLength(8), this.patternValidator('[0-9]', { hasNumber: true }), this.patternValidator('[A-Z]', { hasUpperCase: true }), this.patternValidator('[a-z]', { hasLowerCase: true }), this.patternValidator("[.,<>/?|';:!@#$%^&*()_+=-]", { hasSpecial: true }), this.commonPasswordsValidator()]);
   confirmPasswordForm = new FormControl('', [Validators.required, this.equalsToPasswordValidator()]);
   commonPasswords = ['']

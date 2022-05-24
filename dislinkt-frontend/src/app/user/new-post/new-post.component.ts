@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class NewPostComponent implements OnInit {
 
-  textForm = new FormControl('', [Validators.required]);
+  textForm = new FormControl('', [Validators.required, Validators.maxLength(1024)]);
   imageName: string = '';
   post = new Post();
   newLink: string = '';
