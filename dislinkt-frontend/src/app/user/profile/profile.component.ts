@@ -17,7 +17,7 @@ import Swal from 'sweetalert2';
 export class ProfileComponent implements OnInit {
 
   idFromParams = '';
-  user = new User("", "", "", "", 0, "", "", "", "", "", [], [], false);
+  user = new User("", "", "", "", 0, "", "", "", "", "", [], [], false, false);
   posts: any;
   textForm = new FormControl('');
   postInputActive = '';

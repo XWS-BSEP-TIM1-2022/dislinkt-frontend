@@ -35,7 +35,7 @@ export class InfoComponent implements OnInit {
   newSkill: string = "";
   newInterest: string = "";
 
-  user = new User("", "", "", "", 0, "", "", "", "", "", [], [], false)
+  user = new User("", "", "", "", 0, "", "", "", "", "", [], [], false, false)
   experiences = [] as Experience[]
 
   nameForm = new FormControl('', [Validators.required]);
@@ -86,6 +86,7 @@ export class InfoComponent implements OnInit {
         this.user.skills = res.user.skills
         this.user.interests = res.user.interests
         this.user.TFAEnabled = res.user.TFAEnabled
+        this.user.isPrivate = res.user.private
 
         this.newExperience.userId = this.userId!
 
@@ -405,6 +406,23 @@ export class InfoComponent implements OnInit {
             showConfirmButton: false,
           })
 
+      }
+    )
+  }
+
+  changePrivacy(){
+    this.userService.changePrivacy(this.userId!).subscribe(
+      (data)=>{
+        this.user.isPrivate = !this.user.isPrivate
+      },
+      (error)=>{
+        Swal.fire(
+          {
+            icon: 'error',
+            title: error.error.message,
+            timer: 1000,
+            showConfirmButton: false,
+          })
       }
     )
   }

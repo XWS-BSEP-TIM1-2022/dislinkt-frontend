@@ -19,7 +19,7 @@ export class RegistrationComponent implements OnInit {
   newPassword: string = ""
   oldPassword: string = ""
 
-  user = new User("", "", "", "", 0, "", "", "", "", "", [], [], false)
+  user = new User("", "", "", "", 0, "", "", "", "", "", [], [], false, false)
 
   nameForm = new FormControl('', [Validators.required, Validators.maxLength(30), Validators.pattern(/^[a-z0-9]+$/i)]);
   surnameForm = new FormControl('', [Validators.required, Validators.maxLength(30), Validators.pattern(/^[a-z0-9]+$/i)]);

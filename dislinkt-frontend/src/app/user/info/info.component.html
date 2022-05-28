@@ -1,10 +1,11 @@
 <section class="hero is-small">
     <div class="hero-body">
         <div class="container ">
-            <div class="column is-6 is-offset-3">
+            <div class="column is-6 is-offset-3 has-text-centered">
                 <div *ngIf="!user.TFAEnabled">
                     <span *ngIf="!showQrAndInput">
-                        <button mat-raised-button color="accent" (click)="getQR2fa()">Enable two-factor authentication</button>
+                        <button mat-raised-button color="accent" (click)="getQR2fa()">Enable two-factor
+                            authentication</button>
                     </span>
                     <span *ngIf="showQrAndInput">
                         <mat-card class="example-card">
@@ -35,7 +36,8 @@
                     </span>
                 </div>
                 <div *ngIf="user.TFAEnabled">
-                    <button mat-raised-button color="warn" (click)="disable2fa()">Disable two-factor authentication</button>
+                    <button mat-raised-button color="warn" (click)="disable2fa()">Disable two-factor
+                        authentication</button>
                 </div>
             </div>
         </div>
@@ -49,6 +51,12 @@
 
                 <mat-card class="example-card">
                     <div style="margin-left: 15%; margin-right: 15%;">
+                        <br>
+                        <div class="has-text-centered">
+                            <mat-label>Public &nbsp;&nbsp;</mat-label>
+                            <mat-slide-toggle [checked]="user.isPrivate" (change)="changePrivacy()"></mat-slide-toggle>
+                            <mat-label>&nbsp;&nbsp; Private</mat-label>
+                        </div>
                         <br>
                         <mat-card-content style="margin-left: 1%; margin-right: 1%;">
                             <br>

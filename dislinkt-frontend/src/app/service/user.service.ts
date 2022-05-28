@@ -83,4 +83,8 @@ export class UserService {
     }
     return this.http.put(environment.serverUrl + 'users/password-recovery/' + passwordRecoveryRequestId, body)
   }
+
+  changePrivacy(userId: string) {
+    return this.http.put(environment.serverUrl + 'users/privacy/' + userId, null)
+  }
 }

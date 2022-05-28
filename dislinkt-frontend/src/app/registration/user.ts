@@ -12,6 +12,7 @@ export class User{
         public bio: string,
         public skills: [],
         public interests: [],
-        public TFAEnabled:boolean
+        public TFAEnabled:boolean,
+        public isPrivate:boolean
     ){}
 } 
