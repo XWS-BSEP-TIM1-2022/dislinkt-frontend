@@ -12,18 +12,34 @@ export class PostService {
   constructor(private http: HttpClient) { }
 
   createPost(post: Post) {
-    return this.http.post(environment.serverUrl + 'posts', post)
+    return this.http.post(environment.serverUrl + 'posts', post);
   }
 
   getAllUserPosts(userId: string){
-    return this.http.get<Array<Post>>(environment.serverUrl + 'users/'+ userId +'/posts')
+    return this.http.get<Array<Post>>(environment.serverUrl + 'users/'+ userId +'/posts');
   }
 
   createReaction(reaction: Reaction){
-    return this.http.post(environment.serverUrl + 'posts/'+ reaction.postId+ '/reactions', reaction)
+    return this.http.post(environment.serverUrl + 'posts/'+ reaction.postId+ '/reactions', reaction);
   }
 
   createComment(comment: PostComment){
-    return this.http.post(environment.serverUrl + 'posts/'+ comment.postId+ '/comments', comment)
+    return this.http.post(environment.serverUrl + 'posts/'+ comment.postId+ '/comments', comment);
+  }
+
+  getAllReactionsFromPost(postId: string){
+    return this.http.get<Array<Reaction>>(environment.serverUrl + 'posts/'+ postId+ '/reactions');
+  }
+
+  getAllCommentsFromPost(postId: string){
+    return this.http.get<Array<PostComment>>(environment.serverUrl + 'posts/'+ postId+ '/comments');
+  }
+
+  deleteReaction(reactionId?: string){
+    return this.http.delete(environment.serverUrl + 'reactions/'+reactionId)
+  }
+
+  deleteComment(commentId?: string){
+    return this.http.delete(environment.serverUrl + 'comments/'+commentId)
   }
 }

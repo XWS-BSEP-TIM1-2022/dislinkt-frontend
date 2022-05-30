@@ -18,7 +18,7 @@ export class UserService {
     return this.http.put(environment.serverUrl + 'users/' + id, user)
   }
 
-  getUserData(userId: string) {
+  getUserData(userId: string | null) {
     return this.http.get(environment.serverUrl + 'users/' + userId);
   }
 

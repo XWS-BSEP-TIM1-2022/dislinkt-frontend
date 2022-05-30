@@ -1,0 +1,10 @@
+<h2 *ngIf="likes">Likes:</h2>
+<h2 *ngIf="!likes">Dislikes:</h2>
+
+<div *ngFor="let user of users">
+            <h4>{{user.name}} {{user.surname}} {{user.username}}</h4>
+</div>
+
+<hr>
+
+<button mat-raised-button (click)="cancel()">Cancel</button>

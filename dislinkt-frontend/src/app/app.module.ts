@@ -29,6 +29,9 @@ import { PasswordRecoveryComponent } from './password-recovery/password-recovery
 import { CreateNewPasswordComponent } from './password-recovery/create-new-password/create-new-password.component';
 import { PasswordlessLoginComponent } from './passwordless-login/passwordless-login.component';
 import { MagicLinkComponent } from './passwordless-login/magic-link/magic-link.component';
+import { PostComponent } from './user/post/post.component';
+import { LikesDialogComponent } from './user/profile/likes-dialog/likes-dialog.component';
+import { CommentsDialogComponent } from './user/profile/comments-dialog/comments-dialog.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,10 @@ import { MagicLinkComponent } from './passwordless-login/magic-link/magic-link.c
     PasswordRecoveryComponent,
     CreateNewPasswordComponent,
     PasswordlessLoginComponent,
-    MagicLinkComponent
+    MagicLinkComponent,
+    PostComponent,
+    LikesDialogComponent,
+    CommentsDialogComponent
   ],
   imports: [
     BrowserModule,
