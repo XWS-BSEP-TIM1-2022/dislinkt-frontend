@@ -1,0 +1,20 @@
+<h2 >Comments:</h2>
+
+<div *ngFor="let comment of comments" style="display: flex; flex-wrap: nowrap;
+align-items: center;">
+    <mat-card>
+        <mat-card-title>
+            <h4>{{comment.user.name}} {{comment.user.surname}} {{comment.user.username}}</h4>
+        </mat-card-title>
+        <mat-card-content>
+            <p>{{comment.text}}</p>
+        </mat-card-content>
+        </mat-card>
+        <a (click)="deleteComment(comment.id)">
+            <mat-icon color="accent" class="is-size-1">delete</mat-icon>
+        </a>
+</div>
+
+<hr>
+
+<button mat-raised-button (click)="cancel()">Cancel</button>

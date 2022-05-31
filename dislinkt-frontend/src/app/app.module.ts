@@ -30,6 +30,9 @@ import { CreateNewPasswordComponent } from './password-recovery/create-new-passw
 import { PasswordlessLoginComponent } from './passwordless-login/passwordless-login.component';
 import { MagicLinkComponent } from './passwordless-login/magic-link/magic-link.component';
 import { BlockedComponent } from './user/blocked/blocked.component';
+import { PostComponent } from './user/post/post.component';
+import { LikesDialogComponent } from './user/profile/likes-dialog/likes-dialog.component';
+import { CommentsDialogComponent } from './user/profile/comments-dialog/comments-dialog.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +52,10 @@ import { BlockedComponent } from './user/blocked/blocked.component';
     CreateNewPasswordComponent,
     PasswordlessLoginComponent,
     MagicLinkComponent,
-    BlockedComponent
+    BlockedComponent,
+    PostComponent,
+    LikesDialogComponent,
+    CommentsDialogComponent
   ],
   imports: [
     BrowserModule,

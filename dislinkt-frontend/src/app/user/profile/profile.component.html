@@ -28,58 +28,9 @@
                     </mat-card-content>
                 </mat-card>
 
-                <mat-card *ngFor="let post of posts" style="margin-bottom: 15px; background-color: '#48C78E';" >
-                    <mat-card-title>
-                        <div class="columns">
-                            <div class="column">
-                                {{user.name}} {{user.surname}}
-                            </div>
-                        </div>
-
-                    </mat-card-title>
-                    <mat-card-content>
-                        <div class="columns">
-                            <div class="column is-half">
-                                <div *ngIf="post.text !== ''">
-                                <p>{{post.text}}</p>
-                                </div>
-                                <br>
-                                <div *ngIf="post.image !== ''">
-                                    <p><img src="{{post.image}}" /></p>
-                                </div>
-                                <br>
-                                <div *ngIf="post.links !== []">
-                                    <div *ngFor="let link of post.links; let i = index" [attr.data-index]="i">
-                                        {{i + 1}}) <a>{{link}}</a>
-                                    </div>                                    
-                                </div>
-                            </div>
-                        </div>
-                    </mat-card-content>
-                    <mat-card-footer>
-                        <div class="columns">
-                            <div class="column is-1"></div>
-                            <div class="column is-3">
-                        <a (click)="likePost(post.id)"><mat-icon color="accent" class="is-size-1">thumb_up</mat-icon></a>
-                            </div>
-                            <div class="column is-4">
-                        <a (click)="dislikePost(post.id)"><mat-icon color="accent"  class="is-size-1">thumb_down</mat-icon></a>
-                            </div>
-                            <div class="column is-4">
-                        <a (click)="commentPost(post.id)"><mat-icon color="accent" class="is-size-1">chat_bubble</mat-icon></a>
-                            </div>
-                            </div>
-                            <div class="columns" *ngIf="post.id===postInputActive">
-                                <div class="column is-1" ></div>
-                                <div class="column is-8" >
-                            <input class="input" type="text" matInput placeholder="text"
-                                    [formControl]="textForm" required>
-                                </div>
-                                <div class="column is-1" ></div>
-                            <a (click)="createCommentPost(post.id)"><mat-icon color="accent" class="is-size-1">check_circle</mat-icon></a>
-                            </div>
-                        </mat-card-footer>
-                </mat-card>
+                <app-post *ngFor="let post of posts" style="margin-bottom: 15px; background-color: '#48C78E';"  [user]="user" [post]="post"
+                (likesEvent)="openLikesDialog($event)" (dislikesEvent)="openDislikesDialog($event)" (commentsEvent)="openCommentsDialog($event)">
+                </app-post>
 
             </div>
         </div>
