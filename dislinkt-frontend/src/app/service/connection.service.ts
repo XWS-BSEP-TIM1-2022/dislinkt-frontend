@@ -16,7 +16,7 @@ export class ConnectionService {
     return this.http.post(environment.serverUrl + 'connections', { userId: localStorage.getItem("userId"), connectedUserId: connectedUserId })
   }
 
-  rejectConnection(userId:any, connectedUserId: any) {
+  rejectConnection(userId: any, connectedUserId: any) {
     return this.http.put(environment.serverUrl + 'connections/reject', { userId: userId, connectedUserId: connectedUserId })
   }
 
@@ -38,5 +38,17 @@ export class ConnectionService {
 
   getRequestsConnections() {
     return this.http.get(environment.serverUrl + 'connections/requests/' + localStorage.getItem("userId"))
+  }
+
+  block(userId: string, blockUserId: string) {
+    return this.http.post(environment.serverUrl + 'block', { userId: userId, blockUserId: blockUserId })
+  }
+
+  unblock(userId: string, blockUserId: string) {
+    return this.http.put(environment.serverUrl + 'block', { userId: userId, blockUserId: blockUserId })
+  }
+
+  getBlockedUsersId(userId: string) {
+    return this.http.get(environment.serverUrl + 'block/' + userId)
   }
 }

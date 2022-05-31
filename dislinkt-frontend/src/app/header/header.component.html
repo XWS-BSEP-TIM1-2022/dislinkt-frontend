@@ -31,6 +31,9 @@
                         <a class="button is-success" style="margin-right: 1rem;" [routerLink]="['/newPost']">
                             New post
                         </a>
+                        <a class="button is-success" style="margin-right: 1rem;" [routerLink]="['/blocked']">
+                            Blocked list
+                        </a>
 
                         <span *ngIf="this.authService.isPrivate() == 'true'">
                             <a class="button is-primary" [routerLink]="['/requests']">

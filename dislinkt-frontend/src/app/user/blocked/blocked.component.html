@@ -1,0 +1,39 @@
+<section class="hero is-small">
+    <div class="hero-body">
+        <div class="container ">
+            <div class="column is-8 is-offset-2">
+
+                <mat-card class="example-card">
+                    <div style="margin-left: 5%; margin-right: 5%;">
+                        <br>
+                        <mat-card-content style="margin-left: 1%; margin-right: 1%;">
+                            <table class="table has-background-dark has-text-white is-vcentered">
+                                <tr class="th">
+                                    <th class="has-text-white">Username</th>
+                                    <th class="has-text-white">Name</th>
+                                    <th class="has-text-white">Surname</th>
+                                    <th class="has-text-white">Email</th>
+                                    <th></th>
+                                </tr>
+                                <tr *ngFor="let user of users">
+                                    <td>{{user.username}}</td>
+                                    <td>{{user.name}}</td>
+                                    <td>{{user.surname}}</td>
+                                    <td>{{user.email}}</td>
+                                    <td>
+                                        <a (click)="unblock(user.id)">
+                                            <mat-icon color="warn">
+                                                block</mat-icon>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </mat-card-content>
+                        <br>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</section>

@@ -174,4 +174,28 @@ export class SearchComponent implements OnInit {
     this.router.navigate(['posts/' + user.id]);
   }
 
+  block(user: any) {
+    this.connectionService.block(localStorage.getItem("userId")!, user.id).subscribe(
+      (data)=>{
+        Swal.fire(
+          {
+            icon: 'success',
+            title: "Successfully blocked user with username: '" + user.username + "'",
+            timer: 2000,
+            showConfirmButton: false,
+          })
+        this.users = this.users.filter((u: { id: any; })=>u.id != user.id)
+      },
+      (error)=>{
+        Swal.fire(
+          {
+            icon: 'error',
+            title: error.error.message,
+            timer: 1000,
+            showConfirmButton: false,
+          })
+      }
+    )
+  }
+
 }
