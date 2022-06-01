@@ -51,4 +51,24 @@ export class ConnectionService {
   getBlockedUsersId(userId: string) {
     return this.http.get(environment.serverUrl + 'block/' + userId)
   }
+  
+  getConnection(userId: any, connectedUserId: any) {
+    return this.http.get(environment.serverUrl + 'connections/' + userId + '/' + connectedUserId)
+  }
+
+  isBlockedAny(userId: any, blockedUserId: any) {
+    return this.http.get(environment.serverUrl + 'block/any/' + userId + '/' + blockedUserId)
+  }
+
+  changeMessageNotification(userId: string, connectedUserId: string) {
+    return this.http.put(environment.serverUrl + 'connections/notification/message', { userId: userId, connectedUserId: connectedUserId })
+  }
+
+  changePostNotification(userId: string, connectedUserId: string) {
+    return this.http.put(environment.serverUrl + 'connections/notification/post', { userId: userId, connectedUserId: connectedUserId })
+  }
+
+  changeCommentNotification(userId: string, connectedUserId: string) {
+    return this.http.put(environment.serverUrl + 'connections/notification/comment', { userId: userId, connectedUserId: connectedUserId })
+  }
 }

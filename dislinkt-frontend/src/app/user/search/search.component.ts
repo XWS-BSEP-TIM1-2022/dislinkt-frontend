@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/registration/user';
 import { AuthService } from 'src/app/service/auth.service';
@@ -16,6 +16,7 @@ export class SearchComponent implements OnInit {
   users: any
   searchParam: string | null | undefined
   connections: any
+  showLoadingIcon = true
 
 
   constructor(private userService: UserService, public authService: AuthService, private connectionService: ConnectionService, private activatedRoute: ActivatedRoute, private router: Router) { }
@@ -47,11 +48,17 @@ export class SearchComponent implements OnInit {
       },
       (error) => {
         this.connections = []
+        if(error.error.message="unauthorized"){
+          this.authService.logout()
+          this.router.navigate([''])
+        }
       }
     )
   }
 
   search() {
+    this.users = null
+    this.showLoadingIcon = true
     if (this.searchParam != null) {
       localStorage.setItem('searchParam', this.searchParam)
       if (this.searchParam.length > 100) {
@@ -71,9 +78,15 @@ export class SearchComponent implements OnInit {
           if (this.authService.getRole() == "USER") {
             this.getConnections()
           }
+          this.showLoadingIcon = false
         },
         (error) => {
           this.users = []
+          this.showLoadingIcon = false
+          if(error.error.message="unauthorized"){
+            this.authService.logout()
+            this.router.navigate([''])
+          }
         })
 
     }

@@ -16,12 +16,15 @@
         </div>
     </div>
 </section>
-
 <section class="hero is-medium">
     <div class="hero-body">
         <div class="container">
             <div class="column is-10 is-offset-1">
-                <mat-error *ngIf="users == null || users.length == 0">There is no users for that search param
+            <div class="column is-offset-5 has-text-centered">
+                    <mat-spinner *ngIf="showLoadingIcon && users == null"></mat-spinner>
+                </div>
+                <mat-error *ngIf="!showLoadingIcon && (users == null || users.length == 0)">There is no users for that
+                    search param
                 </mat-error>
 
                 <mat-card *ngFor="let user of users" style="margin-bottom: 15px;">

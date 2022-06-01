@@ -1,3 +1,44 @@
+<div class="column is-2 is-offset-5">
+    <a (click)="newConnection()">
+        <mat-icon color="accent" class="is-size-1 mr-5"
+            *ngIf="this.authService.getRole() === 'USER' && !connection.isConnected && !connection.pendingConnection">
+            person_add</mat-icon>
+    </a>
+    <a (click)="deleteConnection()">
+        <mat-icon color="warn" class="is-size-1 mr-5"
+            *ngIf="this.authService.getRole() === 'USER' && connection.isConnected">close
+        </mat-icon>
+    </a>
+    <a (click)="rejectConnection()">
+        <mat-icon class="is-size-1 mr-5"
+            *ngIf="this.authService.getRole() === 'USER' && !connection.isConnected && connection.pendingConnection">
+            sync_disabled</mat-icon>
+    </a>
+    <a (click)="block()">
+        <mat-icon class="is-size-1 mr-5" *ngIf="this.authService.getRole() === 'USER'">block
+        </mat-icon>
+    </a>
+</div>
+<div class="column is-10 is-offset-1" *ngIf="connection.isConnected">
+    <div class="has-text-centered">
+        <mat-label>&nbsp;&nbsp;Message notification &nbsp;&nbsp;&nbsp;&nbsp;</mat-label>
+        <mat-label>Disabled &nbsp;&nbsp;</mat-label>
+        <mat-slide-toggle [checked]="connection.isMessageNotificationEnabled" (click)="changeMessageNotification()"></mat-slide-toggle>
+        <mat-label>&nbsp;&nbsp; Enabled</mat-label>
+    </div>
+    <div class="has-text-centered">
+        <mat-label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Post notification &nbsp;&nbsp;&nbsp;&nbsp;</mat-label>
+        <mat-label>Disabled &nbsp;&nbsp;</mat-label>
+        <mat-slide-toggle [checked]="connection.isPostNotificationEnabled" (click)="changePostNotification()"></mat-slide-toggle>
+        <mat-label>&nbsp;&nbsp; Enabled</mat-label>
+    </div>
+    <div class="has-text-centered">
+        <mat-label>Comment notification &nbsp;&nbsp;&nbsp;&nbsp;</mat-label>
+        <mat-label>Disabled &nbsp;&nbsp;</mat-label>
+        <mat-slide-toggle [checked]="connection.isCommentNotificationEnabled" (click)="changeCommentNotification()"></mat-slide-toggle>
+        <mat-label>&nbsp;&nbsp; Enabled</mat-label>
+    </div>
+</div>
 <section class="hero is-medium">
     <div class="hero-body">
         <div class="container">
