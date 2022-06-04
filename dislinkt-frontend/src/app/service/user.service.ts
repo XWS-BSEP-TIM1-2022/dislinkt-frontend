@@ -26,6 +26,14 @@ export class UserService {
     return this.http.get(environment.serverUrl + 'users/search?searchParam=' + searchParam)
   }
 
+  editUsername(newPassword: any, id: any) {
+    var body = {
+      "userId": id,
+      "username": newPassword,
+    }
+    return this.http.put(environment.serverUrl + 'users/change-username', body)
+  }
+
   editPassword(newPassword: any, confirmNewPassword: any, oldPassword: any, id: any) {
     var body = {
       "userId": id,

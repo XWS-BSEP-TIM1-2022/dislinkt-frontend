@@ -30,6 +30,8 @@ export class InfoComponent implements OnInit {
   confirmNewPassword: string = ""
   oldPassword: string = ""
 
+  newUsername: string = ""
+
   newExperience: Experience = new Experience;
 
   newSkill: string = "";
@@ -48,6 +50,8 @@ export class InfoComponent implements OnInit {
   newPasswordForm = new FormControl('', [Validators.required])
   confirmPasswordForm = new FormControl('', [Validators.required, this.equalsToPasswordValidator()]);
   oldPasswordForm = new FormControl('', [Validators.required])
+
+  newUsernameForm = new FormControl('', [Validators.required, Validators.minLength(3)])
 
   experiencePlace = new FormControl('', [Validators.required])
   experienceTitle = new FormControl('', [Validators.required])
@@ -157,14 +161,38 @@ export class InfoComponent implements OnInit {
     )
   }
 
+  editUsername() {
+    this.userService.editUsername(this.newUsername, this.userId!).subscribe(
+      (data) => {
+        Swal.fire(
+          {
+            icon: 'success',
+            title: 'Username changed',
+            text: 'Username succefully changed',
+            timer: 3000,
+            showConfirmButton: false,
+          })
+      },
+      (error) => {
+        Swal.fire(
+          {
+            icon: 'error',
+            title: error.error.message,
+            timer: 3000,
+            showConfirmButton: false,
+          })
+      }
+    )
+  }
+
   editPassword() {
     this.userService.editPassword(this.newPassword, this.confirmNewPassword, this.oldPassword, this.userId!).subscribe(
       (data) => {
         Swal.fire(
           {
             icon: 'success',
-            title: 'Password succefully changed',
-            text: 'Here can login',
+            title: 'Password changed',
+            text: 'Password succefully changed',
             timer: 3000,
             showConfirmButton: false,
           })
@@ -188,7 +216,7 @@ export class InfoComponent implements OnInit {
           {
             icon: 'success',
             title: 'Successfully added new experience',
-            text: 'Here can login',
+            text: 'New experience added',
             timer: 3000,
             showConfirmButton: false,
           })
