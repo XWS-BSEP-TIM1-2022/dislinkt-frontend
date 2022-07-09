@@ -33,6 +33,7 @@ import { BlockedComponent } from './user/blocked/blocked.component';
 import { PostComponent } from './user/post/post.component';
 import { LikesDialogComponent } from './user/profile/likes-dialog/likes-dialog.component';
 import { CommentsDialogComponent } from './user/profile/comments-dialog/comments-dialog.component';
+import { NotificationsComponent } from './user/notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { CommentsDialogComponent } from './user/profile/comments-dialog/comments
     BlockedComponent,
     PostComponent,
     LikesDialogComponent,
-    CommentsDialogComponent
+    CommentsDialogComponent,
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,

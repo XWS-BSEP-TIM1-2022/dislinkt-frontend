@@ -18,6 +18,7 @@ import { PageForAdminComponent } from './admin/page-for-admin/page-for-admin.com
 import { AdminGuardService } from './service/admin-guard.service';
 import { MagicLinkComponent } from './passwordless-login/magic-link/magic-link.component';
 import { BlockedComponent } from './user/blocked/blocked.component';
+import { NotificationsComponent } from './user/notifications/notifications.component';
 
 const routes: Routes = [
 
@@ -37,6 +38,7 @@ const routes: Routes = [
   { path: 'page-for-admin', component: PageForAdminComponent, canActivate: [AdminGuardService]},
   { path: 'login/:userId/:requestId', component: MagicLinkComponent },
   { path: 'blocked', component: BlockedComponent },
+  { path: 'notifications', component: NotificationsComponent },
 ];
 
 @NgModule({
