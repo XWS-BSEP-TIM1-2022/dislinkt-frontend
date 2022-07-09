@@ -12,7 +12,7 @@
                             <br>
                             <mat-form-field appearance="legacy" style="width: 100%;">
                                 <mat-label>Search</mat-label>
-                                <input type="search" matInput placeholder="search" [(ngModel)]="this.searchParam" >
+                                <input type="search" matInput placeholder="search" [(ngModel)]="this.searchParam">
                             </mat-form-field>
                             <br>
                             <div style="text-align: center;">
@@ -24,6 +24,10 @@
                         <br>
                     </div>
                 </mat-card>
+                <br><br>
+                <button mat-raised-button color="accent" [routerLink]="['suggestions']">
+                    Suggestions
+                </button>
             </div>
         </div>
     </div>

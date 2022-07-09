@@ -1,0 +1,67 @@
+<section class="hero is-medium">
+    <div class="hero-body">
+        <div class="container">
+            <div class="column is-10 is-offset-1">
+            <div class="column is-offset-5 has-text-centered">
+                    <mat-spinner color="accent" *ngIf="showLoadingIcon && users == null"></mat-spinner>
+                </div>
+                <mat-error *ngIf="!showLoadingIcon && (users == null || users.length == 0)">There is no users for that
+                    search param
+                </mat-error>
+
+                <mat-card *ngFor="let user of users" style="margin-bottom: 15px;">
+                    <mat-card-title class="has-text-centered">
+                        <div class="columns">
+                            <div class="column">
+                                {{user.name}} {{user.surname}}
+                            </div>
+                            <div class="column is-2">
+                                <a (click)="newConnection(user)">
+                                    <mat-icon color="accent" class="is-size-1"
+                                        *ngIf="this.authService.getRole() === 'USER' && !user.isConnected && !user.pendingConnection">
+                                        person_add</mat-icon>
+                                </a>
+                                <a (click)="deleteConnection(user)">
+                                    <mat-icon color="warn" class="is-size-1"
+                                        *ngIf="this.authService.getRole() === 'USER' && user.isConnected">close
+                                    </mat-icon>
+                                </a>
+                                <a (click)="rejectConnection(user)">
+                                    <mat-icon class="is-size-1"
+                                        *ngIf="this.authService.getRole() === 'USER' && !user.isConnected && user.pendingConnection">
+                                        sync_disabled</mat-icon>
+                                </a>
+                            </div>
+                            <div class="column is-2">
+                                <a (click)="openProfile(user)">
+                                    <mat-icon color="accent" class="is-size-1">account_circle</mat-icon>
+                                </a><br>
+                                <a (click)="block(user)">
+                                    <mat-icon class="is-size-1" *ngIf="this.authService.getRole() === 'USER'">block
+                                    </mat-icon>
+                                </a>
+                            </div>
+                        </div>
+
+                    </mat-card-title>
+                    <mat-card-content>
+                        <div class="columns">
+                            <div class="column is-half">
+                                <p>Username: {{user.username}}</p>
+                                <br>
+                                <p>Birth date: {{user.birthDate| date:"dd.MM.yyyy"}}</p>
+                                <br>
+                                <p>Email: {{user.email}}</p>
+
+                            </div>
+                            <div class="column is-half">
+                                <p class="cut-text1">Bio: {{user.bio}} </p>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+
+            </div>
+        </div>
+    </div>
+</section>

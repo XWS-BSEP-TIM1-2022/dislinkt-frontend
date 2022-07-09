@@ -34,6 +34,7 @@ import { PostComponent } from './user/post/post.component';
 import { LikesDialogComponent } from './user/profile/likes-dialog/likes-dialog.component';
 import { CommentsDialogComponent } from './user/profile/comments-dialog/comments-dialog.component';
 import { NotificationsComponent } from './user/notifications/notifications.component';
+import { SuggestionsComponent } from './user/suggestions/suggestions.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { NotificationsComponent } from './user/notifications/notifications.compo
     PostComponent,
     LikesDialogComponent,
     CommentsDialogComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    SuggestionsComponent
   ],
   imports: [
     BrowserModule,

@@ -55,6 +55,10 @@ export class ConnectionService {
   getConnection(userId: any, connectedUserId: any) {
     return this.http.get(environment.serverUrl + 'connections/' + userId + '/' + connectedUserId)
   }
+  
+  getSuggestions(userId: any) {
+    return this.http.get(environment.serverUrl + 'connections/suggestions/' + userId)
+  }
 
   isBlockedAny(userId: any, blockedUserId: any) {
     return this.http.get(environment.serverUrl + 'block/any/' + userId + '/' + blockedUserId)
