@@ -1,0 +1,31 @@
+<section class="hero is-medium">
+    <div class="hero-body">
+        <div class="container">
+            <div class="column is-10 is-offset-1">
+                <mat-card *ngFor="let message of messages" style="margin-bottom: 15px;">
+                    <mat-card-title>{{message.username}}</mat-card-title>
+                    <mat-card-content>
+                        <div class="columns">
+                            <div class="column is-half">
+                                <p> {{message.message}}</p>
+                            </div>
+                            <div class="column is-half">
+                                <p>{{getDate(message.date)}}</p>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+                <div class="columns">
+                    <div class="column is-1"></div>
+                    <div class="column is-8">
+                        <input class="input" type="text" matInput placeholder="text" [formControl]="textForm" required>
+                    </div>
+                    <div class="column is-1"></div>
+                    <a (click)="sendMessage()">
+                        <mat-icon color="accent" class="is-size-1">send</mat-icon>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

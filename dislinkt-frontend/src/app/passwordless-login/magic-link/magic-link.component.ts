@@ -35,6 +35,7 @@ export class MagicLinkComponent implements OnInit {
         localStorage.setItem('role', data.role)
         localStorage.setItem('email', data.email)
         localStorage.setItem('isPrivate', data.isPrivate)
+        localStorage.setItem('username', data.username)
         Swal.fire(
           {
             icon: 'success',

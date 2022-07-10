@@ -1,8 +1,10 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Chat } from 'src/app/model/chat.model';
 import { User } from 'src/app/registration/user';
 import { AuthService } from 'src/app/service/auth.service';
 import { ConnectionService } from 'src/app/service/connection.service';
+import { MessageService } from 'src/app/service/message.service';
 import { UserService } from 'src/app/service/user.service';
 import Swal from 'sweetalert2';
 
@@ -19,7 +21,8 @@ export class SearchComponent implements OnInit {
   showLoadingIcon = true
 
 
-  constructor(private userService: UserService, public authService: AuthService, private connectionService: ConnectionService, private activatedRoute: ActivatedRoute, private router: Router) { }
+  constructor(private userService: UserService, public authService: AuthService, private connectionService: ConnectionService,
+    private activatedRoute: ActivatedRoute, private router: Router, private messageService: MessageService) { }
 
   ngOnInit(): void {
     /*this.activatedRoute.queryParams.subscribe(params => {
@@ -48,7 +51,7 @@ export class SearchComponent implements OnInit {
       },
       (error) => {
         this.connections = []
-        if(error.error.message="unauthorized"){
+        if (error.error.message = "unauthorized") {
           this.authService.logout()
           this.router.navigate([''])
         }
@@ -83,7 +86,7 @@ export class SearchComponent implements OnInit {
         (error) => {
           this.users = []
           this.showLoadingIcon = false
-          if(error.error.message="unauthorized"){
+          if (error.error.message = "unauthorized") {
             this.authService.logout()
             this.router.navigate([''])
           }
@@ -187,9 +190,31 @@ export class SearchComponent implements OnInit {
     this.router.navigate(['posts/' + user.id]);
   }
 
+  openChat(user: any) {
+    let chat = new Chat();
+    chat.userId = this.authService.getUserId();
+    chat.username = this.authService.getUsername();
+    chat.fromUserId = user.id;
+    chat.fromUsername = user.username;
+    this.messageService.createChat(chat).subscribe(
+      (data: any)=>{
+        this.router.navigate(['chats/'+ data.chat.id])
+      },
+      (error) => {
+        Swal.fire(
+          {
+            icon: 'error',
+            title: 'Error occured while opening chat',
+            timer: 3000,
+            showConfirmButton: false,
+          })
+      }
+      )
+  }
+
   block(user: any) {
     this.connectionService.block(localStorage.getItem("userId")!, user.id).subscribe(
-      (data)=>{
+      (data) => {
         Swal.fire(
           {
             icon: 'success',
@@ -197,9 +222,9 @@ export class SearchComponent implements OnInit {
             timer: 2000,
             showConfirmButton: false,
           })
-        this.users = this.users.filter((u: { id: any; })=>u.id != user.id)
+        this.users = this.users.filter((u: { id: any; }) => u.id != user.id)
       },
-      (error)=>{
+      (error) => {
         Swal.fire(
           {
             icon: 'error',

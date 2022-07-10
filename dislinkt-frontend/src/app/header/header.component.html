@@ -49,6 +49,9 @@
                         </a>
                     </span>
                     <span *ngIf="this.authService.getRole() === 'USER'">
+                        <a class="button is-success" style="margin-right: 1rem;" [routerLink]="['/chats']">
+                            Chats
+                        </a>
                         <a class="button is-success" style="margin-right: 1rem;" [routerLink]="['/notifications']">
                             Notifications
                         </a>

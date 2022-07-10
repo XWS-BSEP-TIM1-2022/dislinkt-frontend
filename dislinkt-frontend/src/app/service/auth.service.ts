@@ -19,11 +19,20 @@ export class AuthService {
     localStorage.removeItem('role')
     localStorage.removeItem('email')
     localStorage.removeItem('userId')
+    localStorage.removeItem('username')
     this.router.navigate([''])
   }
 
   getRole() {
     return localStorage.getItem('role');
+  }
+
+  getUsername() {
+    return localStorage.getItem('username') ?? "";
+  }
+
+  getUserId() {
+    return localStorage.getItem('userId') ?? "";
   }
 
   isPrivate() {

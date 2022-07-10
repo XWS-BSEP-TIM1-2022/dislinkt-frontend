@@ -35,6 +35,8 @@ import { LikesDialogComponent } from './user/profile/likes-dialog/likes-dialog.c
 import { CommentsDialogComponent } from './user/profile/comments-dialog/comments-dialog.component';
 import { NotificationsComponent } from './user/notifications/notifications.component';
 import { SuggestionsComponent } from './user/suggestions/suggestions.component';
+import { ChatsComponent } from './chats/chats.component';
+import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,9 @@ import { SuggestionsComponent } from './user/suggestions/suggestions.component';
     LikesDialogComponent,
     CommentsDialogComponent,
     NotificationsComponent,
-    SuggestionsComponent
+    SuggestionsComponent,
+    ChatsComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,

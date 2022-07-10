@@ -20,6 +20,8 @@ import { MagicLinkComponent } from './passwordless-login/magic-link/magic-link.c
 import { BlockedComponent } from './user/blocked/blocked.component';
 import { NotificationsComponent } from './user/notifications/notifications.component';
 import { SuggestionsComponent } from './user/suggestions/suggestions.component';
+import { ChatsComponent } from './chats/chats.component';
+import { MessagesComponent } from './messages/messages.component';
 
 const routes: Routes = [
 
@@ -41,6 +43,8 @@ const routes: Routes = [
   { path: 'blocked', component: BlockedComponent },
   { path: 'notifications', component: NotificationsComponent },
   { path: 'suggestions', component: SuggestionsComponent },
+  { path: 'chats', component: ChatsComponent },
+  { path: 'chats/:chatId', component: MessagesComponent },
 ];
 
 @NgModule({
