@@ -5,8 +5,7 @@
             <div class="column is-offset-5 has-text-centered">
                     <mat-spinner color="accent" *ngIf="showLoadingIcon && users == null"></mat-spinner>
                 </div>
-                <mat-error *ngIf="!showLoadingIcon && (users == null || users.length == 0)">There is no users for that
-                    search param
+                <mat-error *ngIf="!showLoadingIcon && (users == null || users.length == 0)">There is no suggestions for you
                 </mat-error>
 
                 <mat-card *ngFor="let user of users" style="margin-bottom: 15px;">
