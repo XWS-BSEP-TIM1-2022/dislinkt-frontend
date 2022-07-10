@@ -2,7 +2,7 @@
     <div class="hero-body">
         <div class="container has-text-centered">
             <div class="column is-4 is-offset-4">
-                <button mat-raised-button color="accent" [routerLink]="['suggestions']"  *ngIf="this.authService.getRole() === 'USER'">
+                <button  *ngIf="this.authService.getRole() === 'USER'" mat-raised-button color="accent" [routerLink]="['suggestions']">
                     Suggestions
                 </button>
                 <br><br>
@@ -27,10 +27,6 @@
                         <br>
                     </div>
                 </mat-card>
-                <br><br>
-                <button mat-raised-button color="accent" [routerLink]="['suggestions']">
-                    Suggestions
-                </button>
             </div>
         </div>
     </div>
